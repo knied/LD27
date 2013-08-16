@@ -9,26 +9,38 @@
 /* Begin PBXBuildFile section */
 		6D65A47317BEC210000ACEC9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D65A47217BEC210000ACEC9 /* Cocoa.framework */; };
 		6D65A47D17BEC210000ACEC9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6D65A47B17BEC210000ACEC9 /* InfoPlist.strings */; };
-		6D65A47F17BEC210000ACEC9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A47E17BEC210000ACEC9 /* main.m */; };
+		6D65A47F17BEC210000ACEC9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A47E17BEC210000ACEC9 /* main.cpp */; };
 		6D65A48317BEC210000ACEC9 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6D65A48117BEC210000ACEC9 /* Credits.rtf */; };
-		6D65A48617BEC210000ACEC9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A48517BEC210000ACEC9 /* AppDelegate.m */; };
-		6D65A48917BEC210000ACEC9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D65A48717BEC210000ACEC9 /* MainMenu.xib */; };
+		6D65A49017BEC26E000ACEC9 /* QtCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D65A48F17BEC26E000ACEC9 /* QtCore.framework */; };
+		6D65A49217BEC280000ACEC9 /* QtGui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D65A49117BEC280000ACEC9 /* QtGui.framework */; };
+		6D65A49417BEC297000ACEC9 /* QtOpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D65A49317BEC297000ACEC9 /* QtOpenGL.framework */; };
+		6D65A49617BEC2A9000ACEC9 /* QtWidgets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D65A49517BEC2A9000ACEC9 /* QtWidgets.framework */; };
+		6D65A49917BEC474000ACEC9 /* libLD27.Qt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D65A49817BEC474000ACEC9 /* libLD27.Qt.a */; };
+		6D65A49B17BEC4B9000ACEC9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D65A49A17BEC4B9000ACEC9 /* OpenGL.framework */; };
+		6D65A4A017BEC5D5000ACEC9 /* gameview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A49C17BEC5D5000ACEC9 /* gameview.cpp */; };
+		6D65A4A117BEC5D5000ACEC9 /* mainwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A49E17BEC5D5000ACEC9 /* mainwindow.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6D65A46F17BEC210000ACEC9 /* LD27.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LD27.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D65A47217BEC210000ACEC9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		6D65A47517BEC210000ACEC9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		6D65A47617BEC210000ACEC9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		6D65A47717BEC210000ACEC9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6D65A47A17BEC210000ACEC9 /* LD27-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LD27-Info.plist"; sourceTree = "<group>"; };
 		6D65A47C17BEC210000ACEC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6D65A47E17BEC210000ACEC9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6D65A47E17BEC210000ACEC9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		6D65A48017BEC210000ACEC9 /* LD27-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LD27-Prefix.pch"; sourceTree = "<group>"; };
 		6D65A48217BEC210000ACEC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		6D65A48417BEC210000ACEC9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		6D65A48517BEC210000ACEC9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6D65A48817BEC210000ACEC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		6D65A48F17BEC26E000ACEC9 /* QtCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtCore.framework; path = ../../Qt5.0.2/5.0.2/clang_64/lib/QtCore.framework; sourceTree = "<group>"; };
+		6D65A49117BEC280000ACEC9 /* QtGui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtGui.framework; path = ../../Qt5.0.2/5.0.2/clang_64/lib/QtGui.framework; sourceTree = "<group>"; };
+		6D65A49317BEC297000ACEC9 /* QtOpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtOpenGL.framework; path = ../../Qt5.0.2/5.0.2/clang_64/lib/QtOpenGL.framework; sourceTree = "<group>"; };
+		6D65A49517BEC2A9000ACEC9 /* QtWidgets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtWidgets.framework; path = ../../Qt5.0.2/5.0.2/clang_64/lib/QtWidgets.framework; sourceTree = "<group>"; };
+		6D65A49817BEC474000ACEC9 /* libLD27.Qt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLD27.Qt.a; path = "../../Library/Developer/Xcode/DerivedData/LD27-feiacuyyoietnjbnddtzfsjeuxfj/Build/Intermediates/LD27.Qt/libLD27.Qt.a"; sourceTree = "<group>"; };
+		6D65A49A17BEC4B9000ACEC9 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		6D65A49C17BEC5D5000ACEC9 /* gameview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gameview.cpp; sourceTree = "<group>"; };
+		6D65A49D17BEC5D5000ACEC9 /* gameview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameview.h; sourceTree = "<group>"; };
+		6D65A49E17BEC5D5000ACEC9 /* mainwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mainwindow.cpp; sourceTree = "<group>"; };
+		6D65A49F17BEC5D5000ACEC9 /* mainwindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mainwindow.h; sourceTree = "<group>"; };
+		6D65A4A217BEC8C0000ACEC9 /* 8x8tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8x8tiles.png; sourceTree = "<group>"; };
+		6D65A4A517BEC925000ACEC9 /* resources.qrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = resources.qrc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,7 +48,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D65A49B17BEC4B9000ACEC9 /* OpenGL.framework in Frameworks */,
 				6D65A47317BEC210000ACEC9 /* Cocoa.framework in Frameworks */,
+				6D65A49917BEC474000ACEC9 /* libLD27.Qt.a in Frameworks */,
+				6D65A49017BEC26E000ACEC9 /* QtCore.framework in Frameworks */,
+				6D65A49217BEC280000ACEC9 /* QtGui.framework in Frameworks */,
+				6D65A49617BEC2A9000ACEC9 /* QtWidgets.framework in Frameworks */,
+				6D65A49417BEC297000ACEC9 /* QtOpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,28 +81,25 @@
 		6D65A47117BEC210000ACEC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6D65A49517BEC2A9000ACEC9 /* QtWidgets.framework */,
+				6D65A49317BEC297000ACEC9 /* QtOpenGL.framework */,
+				6D65A49117BEC280000ACEC9 /* QtGui.framework */,
+				6D65A48F17BEC26E000ACEC9 /* QtCore.framework */,
+				6D65A49817BEC474000ACEC9 /* libLD27.Qt.a */,
 				6D65A47217BEC210000ACEC9 /* Cocoa.framework */,
-				6D65A47417BEC210000ACEC9 /* Other Frameworks */,
+				6D65A49A17BEC4B9000ACEC9 /* OpenGL.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		6D65A47417BEC210000ACEC9 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6D65A47517BEC210000ACEC9 /* AppKit.framework */,
-				6D65A47617BEC210000ACEC9 /* CoreData.framework */,
-				6D65A47717BEC210000ACEC9 /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		6D65A47817BEC210000ACEC9 /* LD27 */ = {
 			isa = PBXGroup;
 			children = (
-				6D65A48417BEC210000ACEC9 /* AppDelegate.h */,
-				6D65A48517BEC210000ACEC9 /* AppDelegate.m */,
-				6D65A48717BEC210000ACEC9 /* MainMenu.xib */,
+				6D65A4A417BEC8C5000ACEC9 /* Resources */,
+				6D65A49C17BEC5D5000ACEC9 /* gameview.cpp */,
+				6D65A49D17BEC5D5000ACEC9 /* gameview.h */,
+				6D65A49E17BEC5D5000ACEC9 /* mainwindow.cpp */,
+				6D65A49F17BEC5D5000ACEC9 /* mainwindow.h */,
 				6D65A47917BEC210000ACEC9 /* Supporting Files */,
 			);
 			path = LD27;
@@ -95,11 +110,20 @@
 			children = (
 				6D65A47A17BEC210000ACEC9 /* LD27-Info.plist */,
 				6D65A47B17BEC210000ACEC9 /* InfoPlist.strings */,
-				6D65A47E17BEC210000ACEC9 /* main.m */,
+				6D65A47E17BEC210000ACEC9 /* main.cpp */,
 				6D65A48017BEC210000ACEC9 /* LD27-Prefix.pch */,
 				6D65A48117BEC210000ACEC9 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6D65A4A417BEC8C5000ACEC9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6D65A4A517BEC925000ACEC9 /* resources.qrc */,
+				6D65A4A217BEC8C0000ACEC9 /* 8x8tiles.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -109,6 +133,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6D65A48C17BEC210000ACEC9 /* Build configuration list for PBXNativeTarget "LD27" */;
 			buildPhases = (
+				6D65A49717BEC3E0000ACEC9 /* ShellScript */,
 				6D65A46B17BEC210000ACEC9 /* Sources */,
 				6D65A46C17BEC210000ACEC9 /* Frameworks */,
 				6D65A46D17BEC210000ACEC9 /* Resources */,
@@ -155,19 +180,35 @@
 			files = (
 				6D65A47D17BEC210000ACEC9 /* InfoPlist.strings in Resources */,
 				6D65A48317BEC210000ACEC9 /* Credits.rtf in Resources */,
-				6D65A48917BEC210000ACEC9 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6D65A49717BEC3E0000ACEC9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "QTDIR=/Users/kristof/Qt5.0.2\nQTBIN=$QTDIR/5.0.2/clang_64/bin\nQMAKE=$QTBIN/qmake\nTempName=\"$PROJECT_NAME.Qt\"\nTempDirectory=\"$OBJROOT/$TempName\"\n#\ncd \"$OBJROOT\"\nmkdir -p \"$TempName\"\ncd \"$TempName\"\n#\necho Generating qmake project...\n$QMAKE -project \"$SOURCE_ROOT/$PROJECT_NAME\" -nopwd\necho 'QT += core gui' >> \"$OBJROOT/$TempName/$TempName.pro\"\necho 'QT += widgets' >> \"$OBJROOT/$TempName/$TempName.pro\"\necho 'QT += opengl' >> \"$OBJROOT/$TempName/$TempName.pro\"\n#\necho Generating qmake makefile.\n$QMAKE -makefile\n#\necho Generating MOC files...\nmake mocables\n#\necho Compiling UI files...\nmake compiler_uic_make_all\n#\necho Compiling...\nmake compiler_rcc_make_all\nfor i in *.cpp; do\nTarget=`echo $i | sed s/cpp/o/`\nmake $Target\ndone\n#\necho Creating library...\nar rcs lib$TempName.a *.o\nexit 0";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6D65A46B17BEC210000ACEC9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D65A47F17BEC210000ACEC9 /* main.m in Sources */,
-				6D65A48617BEC210000ACEC9 /* AppDelegate.m in Sources */,
+				6D65A47F17BEC210000ACEC9 /* main.cpp in Sources */,
+				6D65A4A017BEC5D5000ACEC9 /* gameview.cpp in Sources */,
+				6D65A4A117BEC5D5000ACEC9 /* mainwindow.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,14 +231,6 @@
 			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
-		6D65A48717BEC210000ACEC9 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6D65A48817BEC210000ACEC9 /* en */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -206,8 +239,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -227,6 +260,13 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/Users/kristof/Qt5.0.2/5.0.2/clang_64/lib/QtWidgets.framework/Versions/5/Headers,
+					/Users/kristof/Qt5.0.2/5.0.2/clang_64/lib/QtOpenGL.framework/Versions/5/Headers,
+					/Users/kristof/Qt5.0.2/5.0.2/clang_64/lib/QtGui.framework/Versions/5/Headers,
+					/Users/kristof/Qt5.0.2/5.0.2/clang_64/lib/QtCore.framework/Versions/5/Headers,
+					"/Users/kristof/Library/Developer/Xcode/DerivedData/LD27-feiacuyyoietnjbnddtzfsjeuxfj/Build/Intermediates/LD27.Qt",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -238,8 +278,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -253,6 +293,13 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/Users/kristof/Qt5.0.2/5.0.2/clang_64/lib/QtWidgets.framework/Versions/5/Headers,
+					/Users/kristof/Qt5.0.2/5.0.2/clang_64/lib/QtOpenGL.framework/Versions/5/Headers,
+					/Users/kristof/Qt5.0.2/5.0.2/clang_64/lib/QtGui.framework/Versions/5/Headers,
+					/Users/kristof/Qt5.0.2/5.0.2/clang_64/lib/QtCore.framework/Versions/5/Headers,
+					"/Users/kristof/Library/Developer/Xcode/DerivedData/LD27-feiacuyyoietnjbnddtzfsjeuxfj/Build/Intermediates/LD27.Qt",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
@@ -262,9 +309,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Qt5.0.2/5.0.2/clang_64/lib\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LD27/LD27-Prefix.pch";
 				INFOPLIST_FILE = "LD27/LD27-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Library/Developer/Xcode/DerivedData/LD27-feiacuyyoietnjbnddtzfsjeuxfj/Build/Intermediates/LD27.Qt\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -274,9 +329,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Qt5.0.2/5.0.2/clang_64/lib\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LD27/LD27-Prefix.pch";
 				INFOPLIST_FILE = "LD27/LD27-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Library/Developer/Xcode/DerivedData/LD27-feiacuyyoietnjbnddtzfsjeuxfj/Build/Intermediates/LD27.Qt\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -301,6 +364,7 @@
 				6D65A48E17BEC210000ACEC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
