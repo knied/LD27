@@ -11,4 +11,19 @@
 
 #include <iostream>
 
+#include "Graphics.h"
+
+class Game {
+public:
+    enum { GRID_WIDTH = 32 };
+    enum { GRID_HEIGHT = 32 };
+    
+private:
+    GridView<GRID_WIDTH, GRID_HEIGHT> _grid_view;
+    
+public:
+    void update(float dt);
+    const GridView<GRID_WIDTH, GRID_HEIGHT>& grid_view() const;
+};
+
 #endif /* defined(__LD27__Game__) */

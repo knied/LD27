@@ -1,38 +1,21 @@
-// =================================================================
-// Author: Kristof Niederholtmeyer
-//
 
-#include "gameview.h"
+#include "Gameview.h"
 
 #include <QtGui>
 #include <iostream>
 #include <vector>
 
-struct Color {
-    unsigned char r, b, g, a;
-};
-
 struct Vertex {
     float x, y, z;
     float u, v;
-    Color color0;
-    Color color1;
+    Color symbol_color;
+    Color background_color;
 };
 
-GameView::GameView(const QGLFormat& format, QWidget *parent) :
-    QGLWidget(format, parent), _tile_size(24), _timer_id(0) 
+GameView::GameView(const QGLFormat& format, QWidget *parent)
+: QGLWidget(format, parent), _time_accumulator(0.0f), _timer_id(0)
 {
     setFocusPolicy(Qt::StrongFocus);
-}
-
-int GameView::prefered_width() const {
-    //return GameClient::ViewWidth * _tile_size ;
-    return 24 * _tile_size;
-}
-
-int GameView::prefered_height() const {
-    //return GameClient::ViewHeight * _tile_size;
-    return 24 * _tile_size;
 }
 
 void GameView::compile_shader(GLuint shader_identifier, const std::string& shader_source) {
@@ -71,55 +54,53 @@ void GameView::link_program() {
 }
 
 void GameView::update_vertex_buffer() {
-    std::vector<Vertex> vertex_data(24 * 24 * 6);
-    for(int y = 0; y < 24; ++y) {
-        for(int x = 0; x < 24; ++x) {
+    std::vector<Vertex> vertex_data(GRID_WIDTH * GRID_HEIGHT * 6);
+    for(int y = 0; y < GRID_HEIGHT; ++y) {
+        for(int x = 0; x < GRID_WIDTH; ++x) {
+            Tile tile = _game.grid_view().tile(x, y);
+            
             float tmp = 1.0f / 16.0f;
-
-            //int tile_x = _game.player_view().symbol(x, y) % 16;
-            //int tile_y = _game.player_view().symbol(x, y) / 16;
-            int tile_x = rand() % 16;
-            int tile_y = rand() % 16;
+            
+            int tile_x = tile.symbol % 16;
+            int tile_y = tile.symbol / 16;
 
             float u0 = 0.0f;
             float u1 = 0.0f;
             float v0 = 0.0f;
             float v1 = 0.0f;
-            /*if (_game.player_view().flip_x(x, y)) {
+            if (tile.flip_x) {
                 u1 = tile_x * tmp;
                 u0 = (tile_x + 1) * tmp;
-            } else {*/
+            } else {
                 u0 = tile_x * tmp;
                 u1 = (tile_x + 1) * tmp;
-            /*}
-            if (_game.player_view().flip_y(x, y)) {
+            }
+            if (tile.flip_y) {
                 v1 = 1.0f - (tile_y) * tmp;
                 v0 = 1.0f - (tile_y + 1) * tmp;
-            } else {*/
+            } else {
                 v0 = 1.0f - (tile_y) * tmp;
                 v1 = 1.0f - (tile_y + 1) * tmp;
-            //}
+            }
             
-            //Color color0 = _game.color(_game.player_view().symbol_color(x, y));
-            //Color color1 = _game.color(_game.player_view().background_color(x, y));
-            Color color0 = {rand() % 256, rand() % 256, rand() % 256, 255};
-            Color color1 = {rand() % 256, rand() % 256, rand() % 256, 255};
+            Color symbol_color = tile.symbol_color;
+            Color background_color = tile.background_color;
 
-            float x_offset = -(float)24 / 2.0f * (float)_tile_size;
-            float y_offset = -(float)24 / 2.0f * (float)_tile_size;
+            float x_offset = -(float)GRID_WIDTH / 2.0f * (float)TILE_WIDTH;
+            float y_offset = -(float)GRID_HEIGHT / 2.0f * (float)TILE_HEIGHT;
 
-            Vertex vertex0 = {(float)(x) * (float)_tile_size + x_offset, (float)(y+1) * (float)_tile_size + y_offset, 0.0f, u0, v0, color0, color1};
-            Vertex vertex1 = {(float)(x+1) * (float)_tile_size + x_offset, (float)(y+1) * (float)_tile_size + y_offset, 0.0f, u1, v0, color0, color1};
-            Vertex vertex2 = {(float)(x+1) * (float)_tile_size + x_offset, (float)(y) * (float)_tile_size + y_offset, 0.0f, u1, v1, color0, color1};
-            Vertex vertex3 = {(float)(x) * (float)_tile_size + x_offset, (float)(y) * (float)_tile_size + y_offset, 0.0f, u0, v1, color0, color1};
+            Vertex vertex0 = {(float)(x) * (float)TILE_WIDTH + x_offset, (float)(y+1) * (float)TILE_HEIGHT + y_offset, 0.0f, u0, v0, symbol_color, background_color};
+            Vertex vertex1 = {(float)(x+1) * (float)TILE_WIDTH + x_offset, (float)(y+1) * (float)TILE_HEIGHT + y_offset, 0.0f, u1, v0, symbol_color, background_color};
+            Vertex vertex2 = {(float)(x+1) * (float)TILE_WIDTH + x_offset, (float)(y) * (float)TILE_HEIGHT + y_offset, 0.0f, u1, v1, symbol_color, background_color};
+            Vertex vertex3 = {(float)(x) * (float)TILE_WIDTH + x_offset, (float)(y) * (float)TILE_HEIGHT + y_offset, 0.0f, u0, v1, symbol_color, background_color};
 
-            vertex_data[6 * 24 * y + 6 * x + 0] = vertex0;
-            vertex_data[6 * 24 * y + 6 * x + 1] = vertex1;
-            vertex_data[6 * 24 * y + 6 * x + 2] = vertex2;
+            vertex_data[6 * GRID_WIDTH * y + 6 * x + 0] = vertex0;
+            vertex_data[6 * GRID_WIDTH * y + 6 * x + 1] = vertex1;
+            vertex_data[6 * GRID_WIDTH * y + 6 * x + 2] = vertex2;
 
-            vertex_data[6 * 24 * y + 6 * x + 3] = vertex0;
-            vertex_data[6 * 24 * y + 6 * x + 4] = vertex2;
-            vertex_data[6 * 24 * y + 6 * x + 5] = vertex3;
+            vertex_data[6 * GRID_WIDTH * y + 6 * x + 3] = vertex0;
+            vertex_data[6 * GRID_WIDTH * y + 6 * x + 4] = vertex2;
+            vertex_data[6 * GRID_WIDTH * y + 6 * x + 5] = vertex3;
         }
     }
 
@@ -150,14 +131,14 @@ void GameView::update_vertex_buffer() {
                           GL_UNSIGNED_BYTE,
                           GL_TRUE,
                           sizeof(Vertex),
-                          &(((Vertex*)0)->color0));
+                          &(((Vertex*)0)->symbol_color));
     glEnableVertexAttribArray(3);
     glVertexAttribPointer(3,
                           4,
                           GL_UNSIGNED_BYTE,
                           GL_TRUE,
                           sizeof(Vertex),
-                          &(((Vertex*)0)->color1));
+                          &(((Vertex*)0)->background_color));
 }
 
 void GameView::initializeGL()
@@ -193,28 +174,28 @@ void GameView::initializeGL()
 
     vertex_shader += "in vec4 vertex;\n";
     vertex_shader += "in vec2 texcoord;\n";
-    vertex_shader += "in vec4 color0;\n";
-    vertex_shader += "in vec4 color1;\n";
+    vertex_shader += "in vec4 symbol_color;\n";
+    vertex_shader += "in vec4 background_color;\n";
 
     vertex_shader += "uniform mat4 mvp;\n";
 
     vertex_shader += "out vec2 v_texcoord;\n";
-    vertex_shader += "out vec4 v_color0;\n";
-    vertex_shader += "out vec4 v_color1;\n";
+    vertex_shader += "out vec4 v_symbol_color;\n";
+    vertex_shader += "out vec4 v_background_color;\n";
 
     vertex_shader += "void main() {\n";
     vertex_shader += "  gl_Position = mvp * vertex;\n";
     vertex_shader += "  v_texcoord = texcoord;\n";
-    vertex_shader += "  v_color0 = color0;\n";
-    vertex_shader += "  v_color1 = color1;\n";
+    vertex_shader += "  v_symbol_color = symbol_color;\n";
+    vertex_shader += "  v_background_color = background_color;\n";
     vertex_shader += "}\n";
 
     std::string fragment_shader;
     fragment_shader += "#version 150\n";
 
     fragment_shader += "in vec2 v_texcoord;\n";
-    fragment_shader += "in vec4 v_color0;\n";
-    fragment_shader += "in vec4 v_color1;\n";
+    fragment_shader += "in vec4 v_symbol_color;\n";
+    fragment_shader += "in vec4 v_background_color;\n";
 
     fragment_shader += "uniform sampler2D texture0;\n";
 
@@ -222,9 +203,7 @@ void GameView::initializeGL()
 
     fragment_shader += "void main() {\n";
     fragment_shader += "  float r = texture(texture0, v_texcoord).r;\n";
-    //fragment_shader += "  float r = v_texcoord.x;\n";
-    fragment_shader += "  frag_color = v_color0 * r + v_color1 * (1.0 - r);\n";
-    //fragment_shader += "  frag_color = r * vec4(1.0,0.0,0.0,1.0) + (1.0 - r) * vec4(0.0,0.0,1.0,1.0);\n";
+    fragment_shader += "  frag_color = v_symbol_color * r + v_background_color * (1.0 - r);\n";
     fragment_shader += "}\n";
 #elif
     // Use GLSL 1.2
@@ -233,38 +212,34 @@ void GameView::initializeGL()
 
     vertex_shader += "attribute vec4 vertex;\n";
     vertex_shader += "attribute vec2 texcoord;\n";
-    vertex_shader += "attribute vec4 color0;\n";
-    vertex_shader += "attribute vec4 color1;\n";
+    vertex_shader += "attribute vec4 symbol_color;\n";
+    vertex_shader += "attribute vec4 background_color;\n";
 
     vertex_shader += "uniform mat4 mvp;\n";
 
     vertex_shader += "varying vec2 v_texcoord;\n";
-    vertex_shader += "varying vec4 v_color0;\n";
-    vertex_shader += "varying vec4 v_color1;\n";
+    vertex_shader += "varying vec4 v_symbol_color;\n";
+    vertex_shader += "varying vec4 v_background_color;\n";
 
     vertex_shader += "void main() {\n";
     vertex_shader += "  gl_Position = mvp * vertex;\n";
     vertex_shader += "  v_texcoord = texcoord;\n";
-    vertex_shader += "  v_color0 = color0;\n";
-    vertex_shader += "  v_color1 = color1;\n";
+    vertex_shader += "  v_symbol_color = symbol_color;\n";
+    vertex_shader += "  v_background_color = background_color;\n";
     vertex_shader += "}\n";
 
     std::string fragment_shader;
     fragment_shader += "#version 120\n";
 
     fragment_shader += "varying vec2 v_texcoord;\n";
-    fragment_shader += "varying vec4 v_color0;\n";
-    fragment_shader += "varying vec4 v_color1;\n";
+    fragment_shader += "varying vec4 v_symbol_color;\n";
+    fragment_shader += "varying vec4 v_background_color;\n";
 
     fragment_shader += "uniform sampler2D texture0;\n";
 
-    //fragment_shader += "out vec4 frag_color;\n";
-
     fragment_shader += "void main() {\n";
     fragment_shader += "  float r = texture(texture0, v_texcoord).r;\n";
-    //fragment_shader += "  float r = v_texcoord.x;\n";
-    fragment_shader += "  gl_FragColor = v_color0 * r + v_color1 * (1.0 - r);\n";
-    //fragment_shader += "  frag_color = r * vec4(1.0,0.0,0.0,1.0) + (1.0 - r) * vec4(0.0,0.0,1.0,1.0);\n";
+    fragment_shader += "  gl_FragColor = v_symbol_color * r + v_background_color * (1.0 - r);\n";
     fragment_shader += "}\n";
 #endif
 
@@ -279,8 +254,8 @@ void GameView::initializeGL()
 
     glBindAttribLocation(_program_identifier, 0, "vertex");
     glBindAttribLocation(_program_identifier, 1, "texcoord");
-    glBindAttribLocation(_program_identifier, 2, "color0");
-    glBindAttribLocation(_program_identifier, 3, "color1");
+    glBindAttribLocation(_program_identifier, 2, "symbol_color");
+    glBindAttribLocation(_program_identifier, 3, "background_color");
 
     link_program();
 
@@ -322,17 +297,10 @@ void GameView::resizeGL(int width, int height)
 
 void GameView::paintGL()
 {
-    timeval tmpTime = _lastTime;
-    gettimeofday(&_lastTime, 0);
-    float dt = (float)(_lastTime.tv_sec - tmpTime.tv_sec) + (float)(_lastTime.tv_usec - tmpTime.tv_usec) * 0.000001f;
-
-    //_game.update(dt);
-    update_vertex_buffer();
-
     glClear(GL_COLOR_BUFFER_BIT);
     glUseProgram(_program_identifier);
     glBindVertexArray(_vao);
-    glDrawArrays(GL_TRIANGLES, 0, 24 * 24 * 6);
+    glDrawArrays(GL_TRIANGLES, 0, GRID_WIDTH * GRID_HEIGHT * 6);
 
     GLenum error = glGetError();
     if (error != GL_NO_ERROR) {
@@ -340,16 +308,37 @@ void GameView::paintGL()
     }
 }
 
+void GameView::move() {
+    timeval tmpTime = _lastTime;
+    gettimeofday(&_lastTime, 0);
+    float frame_time = (float)(_lastTime.tv_sec - tmpTime.tv_sec) + (float)(_lastTime.tv_usec - tmpTime.tv_usec) * 0.000001f;
+    const float dt = 1.0f;
+    
+    _time_accumulator += frame_time;
+    
+    bool needs_redraw = false;
+    while (_time_accumulator >= dt) {
+        _game.update(dt);
+        _time_accumulator -= dt;
+        needs_redraw = true;
+    }
+    
+    if (needs_redraw) {
+        update_vertex_buffer();
+        update();
+    }
+}
+
 void GameView::showEvent(QShowEvent * /* event */)
 {
-    _timer_id = startTimer(1);
+    _timer_id = startTimer(50);
 }
 
 void GameView::timerEvent(QTimerEvent *event)
 {
     if(event->timerId() == _timer_id)
     {
-        update();
+        move();
     }
     else {
         QGLWidget::timerEvent(event);
@@ -396,5 +385,21 @@ void GameView::keyReleaseEvent(QKeyEvent *event) {
         case Qt::Key_Space: _game.key_up(KEY_SPACE); break;
         default: QGLWidget::keyPressEvent(event);
     }*/
+}
+
+void GameView::mousePressEvent(QMouseEvent* event) {
+    
+}
+
+void GameView::mouseReleaseEvent(QMouseEvent* event) {
+    
+}
+
+void GameView::mouseDoubleClickEvent(QMouseEvent* event) {
+    
+}
+
+void GameView::mouseMoveEvent(QMouseEvent* event) {
+    std::cout << "x: " << event->x() << " y: " << event->y() << std::endl;
 }
 

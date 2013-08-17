@@ -1,6 +1,3 @@
-// =================================================================
-// Author: Kristof Niederholtmeyer
-//
 
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
@@ -17,6 +14,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    
 };
 
 #endif // MAINWINDOW_H

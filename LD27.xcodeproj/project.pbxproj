@@ -17,8 +17,10 @@
 		6D65A49617BEC2A9000ACEC9 /* QtWidgets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D65A49517BEC2A9000ACEC9 /* QtWidgets.framework */; };
 		6D65A49917BEC474000ACEC9 /* libLD27.Qt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D65A49817BEC474000ACEC9 /* libLD27.Qt.a */; };
 		6D65A49B17BEC4B9000ACEC9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D65A49A17BEC4B9000ACEC9 /* OpenGL.framework */; };
-		6D65A4A017BEC5D5000ACEC9 /* gameview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A49C17BEC5D5000ACEC9 /* gameview.cpp */; };
-		6D65A4A117BEC5D5000ACEC9 /* mainwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A49E17BEC5D5000ACEC9 /* mainwindow.cpp */; };
+		6D65A4A017BEC5D5000ACEC9 /* Gameview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A49C17BEC5D5000ACEC9 /* Gameview.cpp */; };
+		6D65A4A117BEC5D5000ACEC9 /* Mainwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A49E17BEC5D5000ACEC9 /* Mainwindow.cpp */; };
+		6DEFE90417BFC985000D5A40 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFE90217BFC985000D5A40 /* Game.cpp */; };
+		6DEFE90717BFEF59000D5A40 /* Graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFE90517BFEF59000D5A40 /* Graphics.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,12 +37,16 @@
 		6D65A49517BEC2A9000ACEC9 /* QtWidgets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtWidgets.framework; path = ../../Qt5.0.2/5.0.2/clang_64/lib/QtWidgets.framework; sourceTree = "<group>"; };
 		6D65A49817BEC474000ACEC9 /* libLD27.Qt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLD27.Qt.a; path = "../../Library/Developer/Xcode/DerivedData/LD27-feiacuyyoietnjbnddtzfsjeuxfj/Build/Intermediates/LD27.Qt/libLD27.Qt.a"; sourceTree = "<group>"; };
 		6D65A49A17BEC4B9000ACEC9 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		6D65A49C17BEC5D5000ACEC9 /* gameview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gameview.cpp; sourceTree = "<group>"; };
-		6D65A49D17BEC5D5000ACEC9 /* gameview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameview.h; sourceTree = "<group>"; };
-		6D65A49E17BEC5D5000ACEC9 /* mainwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mainwindow.cpp; sourceTree = "<group>"; };
-		6D65A49F17BEC5D5000ACEC9 /* mainwindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mainwindow.h; sourceTree = "<group>"; };
+		6D65A49C17BEC5D5000ACEC9 /* Gameview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gameview.cpp; sourceTree = "<group>"; };
+		6D65A49D17BEC5D5000ACEC9 /* Gameview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gameview.h; sourceTree = "<group>"; };
+		6D65A49E17BEC5D5000ACEC9 /* Mainwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mainwindow.cpp; sourceTree = "<group>"; };
+		6D65A49F17BEC5D5000ACEC9 /* Mainwindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mainwindow.h; sourceTree = "<group>"; };
 		6D65A4A217BEC8C0000ACEC9 /* 8x8tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8x8tiles.png; sourceTree = "<group>"; };
 		6D65A4A517BEC925000ACEC9 /* resources.qrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = resources.qrc; sourceTree = "<group>"; };
+		6DEFE90217BFC985000D5A40 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		6DEFE90317BFC985000D5A40 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		6DEFE90517BFEF59000D5A40 /* Graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Graphics.cpp; sourceTree = "<group>"; };
+		6DEFE90617BFEF59000D5A40 /* Graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graphics.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,11 +101,15 @@
 		6D65A47817BEC210000ACEC9 /* LD27 */ = {
 			isa = PBXGroup;
 			children = (
+				6DEFE90517BFEF59000D5A40 /* Graphics.cpp */,
+				6DEFE90617BFEF59000D5A40 /* Graphics.h */,
+				6DEFE90217BFC985000D5A40 /* Game.cpp */,
+				6DEFE90317BFC985000D5A40 /* Game.h */,
+				6D65A49C17BEC5D5000ACEC9 /* Gameview.cpp */,
+				6D65A49D17BEC5D5000ACEC9 /* Gameview.h */,
+				6D65A49E17BEC5D5000ACEC9 /* Mainwindow.cpp */,
+				6D65A49F17BEC5D5000ACEC9 /* Mainwindow.h */,
 				6D65A4A417BEC8C5000ACEC9 /* Resources */,
-				6D65A49C17BEC5D5000ACEC9 /* gameview.cpp */,
-				6D65A49D17BEC5D5000ACEC9 /* gameview.h */,
-				6D65A49E17BEC5D5000ACEC9 /* mainwindow.cpp */,
-				6D65A49F17BEC5D5000ACEC9 /* mainwindow.h */,
 				6D65A47917BEC210000ACEC9 /* Supporting Files */,
 			);
 			path = LD27;
@@ -207,8 +217,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D65A47F17BEC210000ACEC9 /* main.cpp in Sources */,
-				6D65A4A017BEC5D5000ACEC9 /* gameview.cpp in Sources */,
-				6D65A4A117BEC5D5000ACEC9 /* mainwindow.cpp in Sources */,
+				6D65A4A017BEC5D5000ACEC9 /* Gameview.cpp in Sources */,
+				6D65A4A117BEC5D5000ACEC9 /* Mainwindow.cpp in Sources */,
+				6DEFE90417BFC985000D5A40 /* Game.cpp in Sources */,
+				6DEFE90717BFEF59000D5A40 /* Graphics.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

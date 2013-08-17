@@ -1,8 +1,5 @@
-// =================================================================
-// Author: Kristof Niederholtmeyer
-//
 
-#include "mainwindow.h"
+#include "Mainwindow.h"
 #include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -15,11 +12,9 @@ MainWindow::MainWindow(QWidget *parent)
     _game_view = new GameView(format);
     if (_game_view)
         setCentralWidget(_game_view);
-    setFixedSize(_game_view->prefered_width(),
-                 _game_view->prefered_height());
+    setFixedSize(GameView::VIEW_WIDTH,
+                 GameView::VIEW_HEIGHT);
 }
-
-
 
 MainWindow::~MainWindow()
 {
