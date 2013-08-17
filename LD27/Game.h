@@ -22,7 +22,6 @@ public:
 private:
     GridView<GRID_WIDTH, GRID_HEIGHT> _grid_view;
     
-    Control _test_control;
     TextControl _test_text_control;
     
 public:

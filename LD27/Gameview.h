@@ -17,8 +17,8 @@ class GameView : public QGLWidget
 public:
     enum { GRID_WIDTH = Game::GRID_WIDTH };
     enum { GRID_HEIGHT = Game::GRID_HEIGHT };
-    enum { TILE_WIDTH = 24 };
-    enum { TILE_HEIGHT = 24 };
+    enum { TILE_WIDTH = 16 };
+    enum { TILE_HEIGHT = 16 };
     enum { VIEW_WIDTH = GRID_WIDTH * TILE_WIDTH };
     enum { VIEW_HEIGHT = GRID_HEIGHT * TILE_HEIGHT };
     

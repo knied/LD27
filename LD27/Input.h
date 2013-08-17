@@ -59,7 +59,9 @@ enum Key {
     KEY_ARROW_LEFT = 0x82,
     KEY_ARROW_RIGHT = 0x83,
     
-    KEY_BACKSPACE = 0x90
+    KEY_BACKSPACE = 0x90,
+    KEY_RETURN = 0x91,
+    KEY_ESCAPE = 0x91
     
 };
 

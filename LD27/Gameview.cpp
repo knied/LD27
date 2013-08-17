@@ -397,6 +397,8 @@ void GameView::keyPressEvent(QKeyEvent *event)
         case Qt::Key_Right: _game.handle_keyboard_event(KeyEvent(KEY_ARROW_RIGHT, KEY_PRESS_EVENT)); break;
             
         case Qt::Key_Backspace: _game.handle_keyboard_event(KeyEvent(KEY_BACKSPACE, KEY_PRESS_EVENT)); break;
+        case Qt::Key_Return: case Qt::Key_Enter: _game.handle_keyboard_event(KeyEvent(KEY_RETURN, KEY_PRESS_EVENT)); break;
+        case Qt::Key_Escape: _game.handle_keyboard_event(KeyEvent(KEY_ESCAPE, KEY_PRESS_EVENT)); break;
             
         default: QGLWidget::keyPressEvent(event); break;
     }
@@ -404,7 +406,7 @@ void GameView::keyPressEvent(QKeyEvent *event)
 
 void GameView::keyReleaseEvent(QKeyEvent *event) {
     switch (event->key()) {
-        case Qt::Key_Space: _game.handle_keyboard_event(KeyEvent(KEY_SPACE, KEY_PRESS_EVENT)); break;
+        case Qt::Key_Space: _game.handle_keyboard_event(KeyEvent(KEY_SPACE, KEY_RELEASE_EVENT)); break;
             
         case Qt::Key_0: _game.handle_keyboard_event(KeyEvent(KEY_0, KEY_RELEASE_EVENT)); break;
         case Qt::Key_1: _game.handle_keyboard_event(KeyEvent(KEY_1, KEY_RELEASE_EVENT)); break;
@@ -450,6 +452,8 @@ void GameView::keyReleaseEvent(QKeyEvent *event) {
         case Qt::Key_Right: _game.handle_keyboard_event(KeyEvent(KEY_ARROW_RIGHT, KEY_RELEASE_EVENT)); break;
             
         case Qt::Key_Backspace: _game.handle_keyboard_event(KeyEvent(KEY_BACKSPACE, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_Return: case Qt::Key_Enter: _game.handle_keyboard_event(KeyEvent(KEY_RETURN, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_Escape: _game.handle_keyboard_event(KeyEvent(KEY_ESCAPE, KEY_RELEASE_EVENT)); break;
             
         default: QGLWidget::keyPressEvent(event); break;
     }
