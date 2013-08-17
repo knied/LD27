@@ -312,7 +312,7 @@ void GameView::move() {
     timeval tmpTime = _lastTime;
     gettimeofday(&_lastTime, 0);
     float frame_time = (float)(_lastTime.tv_sec - tmpTime.tv_sec) + (float)(_lastTime.tv_usec - tmpTime.tv_usec) * 0.000001f;
-    const float dt = 1.0f;
+    const float dt = 0.05f;
     
     _time_accumulator += frame_time;
     
@@ -347,44 +347,112 @@ void GameView::timerEvent(QTimerEvent *event)
 
 void GameView::keyPressEvent(QKeyEvent *event)
 {
-    std::string text = event->text().toStdString();
+    //std::string text = event->text().toStdString();
     //std::cout << text << std::endl;
-    /*_game.text_input(text);
+    //_game.text_input(text);
     switch (event->key()) {
-        case Qt::Key_Left: _game.key_down(KEY_LEFT); break;
-        case Qt::Key_Right: _game.key_down(KEY_RIGHT); break;
-        case Qt::Key_Up: _game.key_down(KEY_UP); break;
-        case Qt::Key_Down: _game.key_down(KEY_DOWN); break;
-        case Qt::Key_Comma: _game.key_down(KEY_COMMA); break;
-        case Qt::Key_Period: _game.key_down(KEY_PERIOD); break;
-        case Qt::Key_W: _game.key_down(KEY_W); break;
-        case Qt::Key_A: _game.key_down(KEY_A); break;
-        case Qt::Key_S: _game.key_down(KEY_S); break;
-        case Qt::Key_D: _game.key_down(KEY_D); break;
-        case Qt::Key_I: _game.key_down(KEY_I); break;
-        case Qt::Key_Space: _game.key_down(KEY_SPACE); break;
-        case Qt::Key_Backspace: _game.text_delete(); break;
-        case Qt::Key_Enter: case Qt::Key_Return: _game.text_done(); break;
-        default: QGLWidget::keyPressEvent(event);
-    }*/
+        case Qt::Key_Space: _game.handle_keyboard_event(KeyEvent(KEY_SPACE, KEY_PRESS_EVENT)); break;
+        
+        case Qt::Key_0: _game.handle_keyboard_event(KeyEvent(KEY_0, KEY_PRESS_EVENT)); break;
+        case Qt::Key_1: _game.handle_keyboard_event(KeyEvent(KEY_1, KEY_PRESS_EVENT)); break;
+        case Qt::Key_2: _game.handle_keyboard_event(KeyEvent(KEY_2, KEY_PRESS_EVENT)); break;
+        case Qt::Key_3: _game.handle_keyboard_event(KeyEvent(KEY_3, KEY_PRESS_EVENT)); break;
+        case Qt::Key_4: _game.handle_keyboard_event(KeyEvent(KEY_4, KEY_PRESS_EVENT)); break;
+        case Qt::Key_5: _game.handle_keyboard_event(KeyEvent(KEY_5, KEY_PRESS_EVENT)); break;
+        case Qt::Key_6: _game.handle_keyboard_event(KeyEvent(KEY_6, KEY_PRESS_EVENT)); break;
+        case Qt::Key_7: _game.handle_keyboard_event(KeyEvent(KEY_7, KEY_PRESS_EVENT)); break;
+        case Qt::Key_8: _game.handle_keyboard_event(KeyEvent(KEY_8, KEY_PRESS_EVENT)); break;
+        case Qt::Key_9: _game.handle_keyboard_event(KeyEvent(KEY_9, KEY_PRESS_EVENT)); break;
+            
+        case Qt::Key_A: _game.handle_keyboard_event(KeyEvent(KEY_A, KEY_PRESS_EVENT)); break;
+        case Qt::Key_B: _game.handle_keyboard_event(KeyEvent(KEY_B, KEY_PRESS_EVENT)); break;
+        case Qt::Key_C: _game.handle_keyboard_event(KeyEvent(KEY_C, KEY_PRESS_EVENT)); break;
+        case Qt::Key_D: _game.handle_keyboard_event(KeyEvent(KEY_D, KEY_PRESS_EVENT)); break;
+        case Qt::Key_E: _game.handle_keyboard_event(KeyEvent(KEY_E, KEY_PRESS_EVENT)); break;
+        case Qt::Key_F: _game.handle_keyboard_event(KeyEvent(KEY_F, KEY_PRESS_EVENT)); break;
+        case Qt::Key_G: _game.handle_keyboard_event(KeyEvent(KEY_G, KEY_PRESS_EVENT)); break;
+        case Qt::Key_H: _game.handle_keyboard_event(KeyEvent(KEY_H, KEY_PRESS_EVENT)); break;
+        case Qt::Key_I: _game.handle_keyboard_event(KeyEvent(KEY_I, KEY_PRESS_EVENT)); break;
+        case Qt::Key_J: _game.handle_keyboard_event(KeyEvent(KEY_J, KEY_PRESS_EVENT)); break;
+        case Qt::Key_K: _game.handle_keyboard_event(KeyEvent(KEY_K, KEY_PRESS_EVENT)); break;
+        case Qt::Key_L: _game.handle_keyboard_event(KeyEvent(KEY_L, KEY_PRESS_EVENT)); break;
+        case Qt::Key_M: _game.handle_keyboard_event(KeyEvent(KEY_M, KEY_PRESS_EVENT)); break;
+        case Qt::Key_N: _game.handle_keyboard_event(KeyEvent(KEY_N, KEY_PRESS_EVENT)); break;
+        case Qt::Key_O: _game.handle_keyboard_event(KeyEvent(KEY_O, KEY_PRESS_EVENT)); break;
+        case Qt::Key_P: _game.handle_keyboard_event(KeyEvent(KEY_P, KEY_PRESS_EVENT)); break;
+        case Qt::Key_Q: _game.handle_keyboard_event(KeyEvent(KEY_Q, KEY_PRESS_EVENT)); break;
+        case Qt::Key_R: _game.handle_keyboard_event(KeyEvent(KEY_R, KEY_PRESS_EVENT)); break;
+        case Qt::Key_S: _game.handle_keyboard_event(KeyEvent(KEY_S, KEY_PRESS_EVENT)); break;
+        case Qt::Key_T: _game.handle_keyboard_event(KeyEvent(KEY_T, KEY_PRESS_EVENT)); break;
+        case Qt::Key_U: _game.handle_keyboard_event(KeyEvent(KEY_U, KEY_PRESS_EVENT)); break;
+        case Qt::Key_V: _game.handle_keyboard_event(KeyEvent(KEY_V, KEY_PRESS_EVENT)); break;
+        case Qt::Key_W: _game.handle_keyboard_event(KeyEvent(KEY_W, KEY_PRESS_EVENT)); break;
+        case Qt::Key_X: _game.handle_keyboard_event(KeyEvent(KEY_X, KEY_PRESS_EVENT)); break;
+        case Qt::Key_Y: _game.handle_keyboard_event(KeyEvent(KEY_Y, KEY_PRESS_EVENT)); break;
+        case Qt::Key_Z: _game.handle_keyboard_event(KeyEvent(KEY_Z, KEY_PRESS_EVENT)); break;
+            
+        case Qt::Key_Up: _game.handle_keyboard_event(KeyEvent(KEY_ARROW_UP, KEY_PRESS_EVENT)); break;
+        case Qt::Key_Down: _game.handle_keyboard_event(KeyEvent(KEY_ARROW_DOWN, KEY_PRESS_EVENT)); break;
+        case Qt::Key_Left: _game.handle_keyboard_event(KeyEvent(KEY_ARROW_LEFT, KEY_PRESS_EVENT)); break;
+        case Qt::Key_Right: _game.handle_keyboard_event(KeyEvent(KEY_ARROW_RIGHT, KEY_PRESS_EVENT)); break;
+            
+        case Qt::Key_Backspace: _game.handle_keyboard_event(KeyEvent(KEY_BACKSPACE, KEY_PRESS_EVENT)); break;
+            
+        default: QGLWidget::keyPressEvent(event); break;
+    }
 }
 
 void GameView::keyReleaseEvent(QKeyEvent *event) {
-    /*switch (event->key()) {
-        case Qt::Key_Left: _game.key_up(KEY_LEFT); break;
-        case Qt::Key_Right: _game.key_up(KEY_RIGHT); break;
-        case Qt::Key_Up: _game.key_up(KEY_UP); break;
-        case Qt::Key_Down: _game.key_up(KEY_DOWN); break;
-        case Qt::Key_Comma: _game.key_up(KEY_COMMA); break;
-        case Qt::Key_Period: _game.key_up(KEY_PERIOD); break;
-        case Qt::Key_W: _game.key_up(KEY_W); break;
-        case Qt::Key_A: _game.key_up(KEY_A); break;
-        case Qt::Key_S: _game.key_up(KEY_S); break;
-        case Qt::Key_D: _game.key_up(KEY_D); break;
-        case Qt::Key_I: _game.key_up(KEY_I); break;
-        case Qt::Key_Space: _game.key_up(KEY_SPACE); break;
-        default: QGLWidget::keyPressEvent(event);
-    }*/
+    switch (event->key()) {
+        case Qt::Key_Space: _game.handle_keyboard_event(KeyEvent(KEY_SPACE, KEY_PRESS_EVENT)); break;
+            
+        case Qt::Key_0: _game.handle_keyboard_event(KeyEvent(KEY_0, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_1: _game.handle_keyboard_event(KeyEvent(KEY_1, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_2: _game.handle_keyboard_event(KeyEvent(KEY_2, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_3: _game.handle_keyboard_event(KeyEvent(KEY_3, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_4: _game.handle_keyboard_event(KeyEvent(KEY_4, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_5: _game.handle_keyboard_event(KeyEvent(KEY_5, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_6: _game.handle_keyboard_event(KeyEvent(KEY_6, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_7: _game.handle_keyboard_event(KeyEvent(KEY_7, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_8: _game.handle_keyboard_event(KeyEvent(KEY_8, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_9: _game.handle_keyboard_event(KeyEvent(KEY_9, KEY_RELEASE_EVENT)); break;
+            
+        case Qt::Key_A: _game.handle_keyboard_event(KeyEvent(KEY_A, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_B: _game.handle_keyboard_event(KeyEvent(KEY_B, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_C: _game.handle_keyboard_event(KeyEvent(KEY_C, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_D: _game.handle_keyboard_event(KeyEvent(KEY_D, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_E: _game.handle_keyboard_event(KeyEvent(KEY_E, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_F: _game.handle_keyboard_event(KeyEvent(KEY_F, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_G: _game.handle_keyboard_event(KeyEvent(KEY_G, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_H: _game.handle_keyboard_event(KeyEvent(KEY_H, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_I: _game.handle_keyboard_event(KeyEvent(KEY_I, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_J: _game.handle_keyboard_event(KeyEvent(KEY_J, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_K: _game.handle_keyboard_event(KeyEvent(KEY_K, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_L: _game.handle_keyboard_event(KeyEvent(KEY_L, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_M: _game.handle_keyboard_event(KeyEvent(KEY_M, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_N: _game.handle_keyboard_event(KeyEvent(KEY_N, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_O: _game.handle_keyboard_event(KeyEvent(KEY_O, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_P: _game.handle_keyboard_event(KeyEvent(KEY_P, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_Q: _game.handle_keyboard_event(KeyEvent(KEY_Q, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_R: _game.handle_keyboard_event(KeyEvent(KEY_R, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_S: _game.handle_keyboard_event(KeyEvent(KEY_S, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_T: _game.handle_keyboard_event(KeyEvent(KEY_T, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_U: _game.handle_keyboard_event(KeyEvent(KEY_U, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_V: _game.handle_keyboard_event(KeyEvent(KEY_V, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_W: _game.handle_keyboard_event(KeyEvent(KEY_W, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_X: _game.handle_keyboard_event(KeyEvent(KEY_X, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_Y: _game.handle_keyboard_event(KeyEvent(KEY_Y, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_Z: _game.handle_keyboard_event(KeyEvent(KEY_Z, KEY_RELEASE_EVENT)); break;
+            
+        case Qt::Key_Up: _game.handle_keyboard_event(KeyEvent(KEY_ARROW_UP, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_Down: _game.handle_keyboard_event(KeyEvent(KEY_ARROW_DOWN, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_Left: _game.handle_keyboard_event(KeyEvent(KEY_ARROW_LEFT, KEY_RELEASE_EVENT)); break;
+        case Qt::Key_Right: _game.handle_keyboard_event(KeyEvent(KEY_ARROW_RIGHT, KEY_RELEASE_EVENT)); break;
+            
+        case Qt::Key_Backspace: _game.handle_keyboard_event(KeyEvent(KEY_BACKSPACE, KEY_RELEASE_EVENT)); break;
+            
+        default: QGLWidget::keyPressEvent(event); break;
+    }
 }
 
 void GameView::mousePressEvent(QMouseEvent* event) {

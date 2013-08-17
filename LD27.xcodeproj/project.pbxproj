@@ -19,6 +19,7 @@
 		6D65A49B17BEC4B9000ACEC9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D65A49A17BEC4B9000ACEC9 /* OpenGL.framework */; };
 		6D65A4A017BEC5D5000ACEC9 /* Gameview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A49C17BEC5D5000ACEC9 /* Gameview.cpp */; };
 		6D65A4A117BEC5D5000ACEC9 /* Mainwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A49E17BEC5D5000ACEC9 /* Mainwindow.cpp */; };
+		6DE1686B17C0138B00263BAC /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DE1686917C0138B00263BAC /* Input.cpp */; };
 		6DEFE90417BFC985000D5A40 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFE90217BFC985000D5A40 /* Game.cpp */; };
 		6DEFE90717BFEF59000D5A40 /* Graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFE90517BFEF59000D5A40 /* Graphics.cpp */; };
 /* End PBXBuildFile section */
@@ -43,6 +44,8 @@
 		6D65A49F17BEC5D5000ACEC9 /* Mainwindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mainwindow.h; sourceTree = "<group>"; };
 		6D65A4A217BEC8C0000ACEC9 /* 8x8tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8x8tiles.png; sourceTree = "<group>"; };
 		6D65A4A517BEC925000ACEC9 /* resources.qrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = resources.qrc; sourceTree = "<group>"; };
+		6DE1686917C0138B00263BAC /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
+		6DE1686A17C0138B00263BAC /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input.h; sourceTree = "<group>"; };
 		6DEFE90217BFC985000D5A40 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		6DEFE90317BFC985000D5A40 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		6DEFE90517BFEF59000D5A40 /* Graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Graphics.cpp; sourceTree = "<group>"; };
@@ -101,6 +104,8 @@
 		6D65A47817BEC210000ACEC9 /* LD27 */ = {
 			isa = PBXGroup;
 			children = (
+				6DE1686917C0138B00263BAC /* Input.cpp */,
+				6DE1686A17C0138B00263BAC /* Input.h */,
 				6DEFE90517BFEF59000D5A40 /* Graphics.cpp */,
 				6DEFE90617BFEF59000D5A40 /* Graphics.h */,
 				6DEFE90217BFC985000D5A40 /* Game.cpp */,
@@ -221,6 +226,7 @@
 				6D65A4A117BEC5D5000ACEC9 /* Mainwindow.cpp in Sources */,
 				6DEFE90417BFC985000D5A40 /* Game.cpp in Sources */,
 				6DEFE90717BFEF59000D5A40 /* Graphics.cpp in Sources */,
+				6DE1686B17C0138B00263BAC /* Input.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

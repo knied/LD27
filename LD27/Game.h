@@ -12,16 +12,23 @@
 #include <iostream>
 
 #include "Graphics.h"
+#include "Input.h"
 
 class Game {
 public:
-    enum { GRID_WIDTH = 32 };
-    enum { GRID_HEIGHT = 32 };
+    enum { GRID_WIDTH = 24 };
+    enum { GRID_HEIGHT = 24 };
     
 private:
     GridView<GRID_WIDTH, GRID_HEIGHT> _grid_view;
     
+    Control _test_control;
+    TextControl _test_text_control;
+    
 public:
+    Game();
+    
+    void handle_keyboard_event(const KeyEvent& event);
     void update(float dt);
     const GridView<GRID_WIDTH, GRID_HEIGHT>& grid_view() const;
 };
