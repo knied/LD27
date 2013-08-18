@@ -2,6 +2,7 @@
 #include "Gameview.h"
 
 #include <QtGui>
+#include <QtMultimedia>
 #include <iostream>
 #include <vector>
 
