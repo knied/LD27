@@ -2,7 +2,6 @@
 #include "Gameview.h"
 
 #include <QtGui>
-#include <QtMultimedia>
 #include <iostream>
 #include <vector>
 
@@ -348,9 +347,10 @@ void GameView::timerEvent(QTimerEvent *event)
 
 void GameView::keyPressEvent(QKeyEvent *event)
 {
-    //std::string text = event->text().toStdString();
+    std::string text = event->text().toStdString();
     //std::cout << text << std::endl;
-    //_game.text_input(text);
+    _game.handle_text_event(text);
+    
     switch (event->key()) {
         case Qt::Key_Space: _game.handle_keyboard_event(KeyEvent(KEY_SPACE, KEY_PRESS_EVENT)); break;
         

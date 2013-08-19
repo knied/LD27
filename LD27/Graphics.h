@@ -79,7 +79,26 @@ public:
         } else if (character >= 'A' && character <= 'Z') {
             set_symbol(x, y, character - 'A' + 224);
         } else {
-            set_symbol(x, y, 223);
+            unsigned char symbol = 0;
+            switch (character) {
+                case ' ': symbol = 223; break;
+                case '.': symbol = 218; break;
+                case '[': symbol = 220; break;
+                case '(': symbol = 221; break;
+                case '{': symbol = 222; break;
+                case ']': symbol = 220; set_flip(x, y, true, false); break;
+                case ')': symbol = 221; set_flip(x, y, true, false); break;
+                case '}': symbol = 222; set_flip(x, y, true, false); break;
+                case '+': symbol = 250; break;
+                case '-': symbol = 251; break;
+                case '*': symbol = 252; break;
+                case '/': symbol = 253; break;
+                case '=': symbol = 254; break;
+                case ':': symbol = 255; break;
+                    
+                default: symbol = 223; break;
+            }
+            set_symbol(x, y, symbol);
         }
     }
     void draw_text(unsigned int x, unsigned int y, const std::string& text, const Color& text_color) {

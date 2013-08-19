@@ -13,20 +13,24 @@
 
 #include "Graphics.h"
 #include "Input.h"
+#include "Sound.h"
 
 class Game {
 public:
-    enum { GRID_WIDTH = 24 };
+    enum { GRID_WIDTH = 32 };
     enum { GRID_HEIGHT = 24 };
     
 private:
     GridView<GRID_WIDTH, GRID_HEIGHT> _grid_view;
     
     TextControl _test_text_control;
+    float _cursor_timer;
+    Sound _flush_sound;
     
 public:
     Game();
     
+    void handle_text_event(const std::string& text);
     void handle_keyboard_event(const KeyEvent& event);
     void update(float dt);
     const GridView<GRID_WIDTH, GRID_HEIGHT>& grid_view() const;

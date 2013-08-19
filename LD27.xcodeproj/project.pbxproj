@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D5646EE17C2572600B70E81 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5646EC17C2572600B70E81 /* Sound.cpp */; };
 		6D65A47317BEC210000ACEC9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D65A47217BEC210000ACEC9 /* Cocoa.framework */; };
 		6D65A47D17BEC210000ACEC9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6D65A47B17BEC210000ACEC9 /* InfoPlist.strings */; };
 		6D65A47F17BEC210000ACEC9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A47E17BEC210000ACEC9 /* main.cpp */; };
@@ -20,12 +21,15 @@
 		6D65A4A017BEC5D5000ACEC9 /* Gameview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A49C17BEC5D5000ACEC9 /* Gameview.cpp */; };
 		6D65A4A117BEC5D5000ACEC9 /* Mainwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A49E17BEC5D5000ACEC9 /* Mainwindow.cpp */; };
 		6D781B8917C0B01E00B52767 /* QtMultimedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D781B8817C0B01E00B52767 /* QtMultimedia.framework */; };
+		6D92BF0717C0EA5400755F21 /* flush.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D92BF0617C0EA5400755F21 /* flush.wav */; };
 		6DE1686B17C0138B00263BAC /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DE1686917C0138B00263BAC /* Input.cpp */; };
 		6DEFE90417BFC985000D5A40 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFE90217BFC985000D5A40 /* Game.cpp */; };
 		6DEFE90717BFEF59000D5A40 /* Graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFE90517BFEF59000D5A40 /* Graphics.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6D5646EC17C2572600B70E81 /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
+		6D5646ED17C2572600B70E81 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		6D65A46F17BEC210000ACEC9 /* LD27.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LD27.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D65A47217BEC210000ACEC9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6D65A47A17BEC210000ACEC9 /* LD27-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LD27-Info.plist"; sourceTree = "<group>"; };
@@ -46,6 +50,7 @@
 		6D65A4A217BEC8C0000ACEC9 /* 8x8tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8x8tiles.png; sourceTree = "<group>"; };
 		6D65A4A517BEC925000ACEC9 /* resources.qrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = resources.qrc; sourceTree = "<group>"; };
 		6D781B8817C0B01E00B52767 /* QtMultimedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtMultimedia.framework; path = ../../Qt5.0.2/5.0.2/clang_64/lib/QtMultimedia.framework; sourceTree = "<group>"; };
+		6D92BF0617C0EA5400755F21 /* flush.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = flush.wav; sourceTree = "<group>"; };
 		6DE1686917C0138B00263BAC /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
 		6DE1686A17C0138B00263BAC /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input.h; sourceTree = "<group>"; };
 		6DEFE90217BFC985000D5A40 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
@@ -108,6 +113,8 @@
 		6D65A47817BEC210000ACEC9 /* LD27 */ = {
 			isa = PBXGroup;
 			children = (
+				6D5646EC17C2572600B70E81 /* Sound.cpp */,
+				6D5646ED17C2572600B70E81 /* Sound.h */,
 				6DE1686917C0138B00263BAC /* Input.cpp */,
 				6DE1686A17C0138B00263BAC /* Input.h */,
 				6DEFE90517BFEF59000D5A40 /* Graphics.cpp */,
@@ -139,6 +146,7 @@
 		6D65A4A417BEC8C5000ACEC9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6D92BF0617C0EA5400755F21 /* flush.wav */,
 				6D65A4A517BEC925000ACEC9 /* resources.qrc */,
 				6D65A4A217BEC8C0000ACEC9 /* 8x8tiles.png */,
 			);
@@ -199,6 +207,7 @@
 			files = (
 				6D65A47D17BEC210000ACEC9 /* InfoPlist.strings in Resources */,
 				6D65A48317BEC210000ACEC9 /* Credits.rtf in Resources */,
+				6D92BF0717C0EA5400755F21 /* flush.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +225,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "QTDIR=/Users/kristof/Qt5.0.2\nQTBIN=$QTDIR/5.0.2/clang_64/bin\nQMAKE=$QTBIN/qmake\nTempName=\"$PROJECT_NAME.Qt\"\nTempDirectory=\"$OBJROOT/$TempName\"\n#\ncd \"$OBJROOT\"\nmkdir -p \"$TempName\"\ncd \"$TempName\"\n#\necho Generating qmake project...\n$QMAKE -project \"$SOURCE_ROOT/$PROJECT_NAME\" -nopwd\necho 'QT += core gui' >> \"$OBJROOT/$TempName/$TempName.pro\"\necho 'QT += widgets' >> \"$OBJROOT/$TempName/$TempName.pro\"\necho 'QT += opengl' >> \"$OBJROOT/$TempName/$TempName.pro\"\n#\necho Generating qmake makefile.\n$QMAKE -makefile\n#\necho Generating MOC files...\nmake mocables\n#\necho Compiling UI files...\nmake compiler_uic_make_all\n#\necho Compiling...\nmake compiler_rcc_make_all\nfor i in *.cpp; do\nTarget=`echo $i | sed s/cpp/o/`\nmake $Target\ndone\n#\necho Creating library...\nar rcs lib$TempName.a *.o\nexit 0";
+			shellScript = "QTDIR=/Users/kristof/Qt5.0.2\nQTBIN=$QTDIR/5.0.2/clang_64/bin\nQMAKE=$QTBIN/qmake\nTempName=\"$PROJECT_NAME.Qt\"\nTempDirectory=\"$OBJROOT/$TempName\"\n#\ncd \"$OBJROOT\"\nmkdir -p \"$TempName\"\ncd \"$TempName\"\n#\necho Generating qmake project...\n$QMAKE -project \"$SOURCE_ROOT/$PROJECT_NAME\" -nopwd\necho 'QT += core gui' >> \"$OBJROOT/$TempName/$TempName.pro\"\necho 'QT += widgets' >> \"$OBJROOT/$TempName/$TempName.pro\"\necho 'QT += opengl' >> \"$OBJROOT/$TempName/$TempName.pro\"\necho 'QT += multimedia' >> \"$OBJROOT/$TempName/$TempName.pro\"\n#\necho Generating qmake makefile.\n$QMAKE -makefile\n#\necho Generating MOC files...\nmake mocables\n#\necho Compiling UI files...\nmake compiler_uic_make_all\n#\necho Compiling...\nmake compiler_rcc_make_all\nfor i in *.cpp; do\nTarget=`echo $i | sed s/cpp/o/`\nmake $Target\ndone\n#\necho Creating library...\nar rcs lib$TempName.a *.o\nexit 0";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -231,6 +240,7 @@
 				6DEFE90417BFC985000D5A40 /* Game.cpp in Sources */,
 				6DEFE90717BFEF59000D5A40 /* Graphics.cpp in Sources */,
 				6DE1686B17C0138B00263BAC /* Input.cpp in Sources */,
+				6D5646EE17C2572600B70E81 /* Sound.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

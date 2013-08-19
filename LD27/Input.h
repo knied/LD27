@@ -129,17 +129,53 @@ public:
 class TextControl {
     std::string _text;
     unsigned int _cursor;
+    bool _support_A_to_Z;
+    bool _support_0_to_9;
+    bool _support_space;
+    std::string _support_custom;
+    
+    bool character_is_supported(char character) {
+        if (_support_0_to_9 && character >= '0' && character <= '9') {
+            return true;
+        }
+        if (_support_A_to_Z && character >= 'A' && character <= 'Z') {
+            return true;
+        }
+        if (_support_space && character == ' ') {
+            return true;
+        }
+        for (unsigned int i = 0; i < _support_custom.length(); ++i) {
+            if (character == _support_custom[i]) {
+                return true;
+            }
+        }
+        return false;
+    }
     
 public:
-    TextControl(const std::string& text = "") : _text(text), _cursor((unsigned int)text.length()) {}
+    TextControl(const std::string& text = "",
+                bool support_A_to_Z = true,
+                bool support_0_to_9 = true,
+                bool support_space = true,
+                const std::string& support_custom = ".()[]{}+-*/=:")
+    : _text(text), _cursor((unsigned int)text.length()), _support_A_to_Z(support_A_to_Z), _support_0_to_9(support_0_to_9), _support_space(support_space), _support_custom(support_custom) {}
     
-    void handle_event(const KeyEvent& event) {
-        if (event.type == KEY_PRESS_EVENT) {
-            unsigned char character = event.key;
-            if ((character >= '0' && character <= '9') || (character >= 'A' && character <= 'Z') || character == ' ') {
+    void handle_text_event(const std::string& text) {
+        if (text.length() > 0) {
+            unsigned char character = text[0];
+            if (character >= 'a' && character <= 'z') {
+                character = character - 'a' + 'A';
+            }
+            
+            if (character_is_supported(character)) {
                 _text.insert(_text.begin() + _cursor, character);
                 _cursor++;
-            } else if (event.key == KEY_BACKSPACE) {
+            }
+        }
+    }
+    void handle_event(const KeyEvent& event) {
+        if (event.type == KEY_PRESS_EVENT) {
+            if (event.key == KEY_BACKSPACE) {
                 if (_cursor > 0) {
                     _text.erase(_text.begin() + (_cursor - 1));
                     _cursor--;
