@@ -40,7 +40,7 @@ private:
     
     TextControl _test_text_control;
     float _cursor_timer;
-    Sound _flush_sound;
+    //Sound _flush_sound;
     
     EntityComponent<Tile> _tile_component;
     EntityComponent<Position> _position_component;

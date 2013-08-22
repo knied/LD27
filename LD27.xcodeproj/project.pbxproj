@@ -21,7 +21,6 @@
 		6D65A4A017BEC5D5000ACEC9 /* Gameview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A49C17BEC5D5000ACEC9 /* Gameview.cpp */; };
 		6D65A4A117BEC5D5000ACEC9 /* Mainwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A49E17BEC5D5000ACEC9 /* Mainwindow.cpp */; };
 		6D781B8917C0B01E00B52767 /* QtMultimedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D781B8817C0B01E00B52767 /* QtMultimedia.framework */; };
-		6D92BF0717C0EA5400755F21 /* flush.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D92BF0617C0EA5400755F21 /* flush.wav */; };
 		6DE1686B17C0138B00263BAC /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DE1686917C0138B00263BAC /* Input.cpp */; };
 		6DE7EFC317C62C3900B2DA75 /* EntityComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DE7EFC117C62C3900B2DA75 /* EntityComponent.cpp */; };
 		6DEFE90417BFC985000D5A40 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFE90217BFC985000D5A40 /* Game.cpp */; };
@@ -51,7 +50,6 @@
 		6D65A4A217BEC8C0000ACEC9 /* 8x8tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8x8tiles.png; sourceTree = "<group>"; };
 		6D65A4A517BEC925000ACEC9 /* resources.qrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = resources.qrc; sourceTree = "<group>"; };
 		6D781B8817C0B01E00B52767 /* QtMultimedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtMultimedia.framework; path = ../../Qt5.0.2/5.0.2/clang_64/lib/QtMultimedia.framework; sourceTree = "<group>"; };
-		6D92BF0617C0EA5400755F21 /* flush.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = flush.wav; sourceTree = "<group>"; };
 		6DE1686917C0138B00263BAC /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
 		6DE1686A17C0138B00263BAC /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input.h; sourceTree = "<group>"; };
 		6DE7EFC117C62C3900B2DA75 /* EntityComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityComponent.cpp; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 		6D65A4A417BEC8C5000ACEC9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6D92BF0617C0EA5400755F21 /* flush.wav */,
 				6D65A4A517BEC925000ACEC9 /* resources.qrc */,
 				6D65A4A217BEC8C0000ACEC9 /* 8x8tiles.png */,
 			);
@@ -212,7 +209,6 @@
 			files = (
 				6D65A47D17BEC210000ACEC9 /* InfoPlist.strings in Resources */,
 				6D65A48317BEC210000ACEC9 /* Credits.rtf in Resources */,
-				6D92BF0717C0EA5400755F21 /* flush.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

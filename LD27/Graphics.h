@@ -13,6 +13,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include <string>
+#include <iostream>
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -63,20 +64,40 @@ public:
                   const Color& background_color,
                   bool flip_x = false,
                   bool flip_y = false) {
-        _tiles[y * GRID_WIDTH + x] = Tile(symbol, symbol_color, background_color, flip_x, flip_y);
+        if (x < GRID_WIDTH && y < GRID_HEIGHT) {
+            _tiles[y * GRID_WIDTH + x] = Tile(symbol, symbol_color, background_color, flip_x, flip_y);
+        } else {
+            std::cout << "WARNING: Out of bounds write access to grid view." << std::endl;
+        }
     }
     void set_symbol(unsigned int x, unsigned int y, unsigned char symbol) {
-        _tiles[y * GRID_WIDTH + x].symbol = symbol;
+        if (x < GRID_WIDTH && y < GRID_HEIGHT) {
+            _tiles[y * GRID_WIDTH + x].symbol = symbol;
+        } else {
+            std::cout << "WARNING: Out of bounds write access to grid view." << std::endl;
+        }
     }
     void set_symbol_color(unsigned int x, unsigned int y, const Color& symbol_color) {
-        _tiles[y * GRID_WIDTH + x].symbol_color = symbol_color;
+        if (x < GRID_WIDTH && y < GRID_HEIGHT) {
+            _tiles[y * GRID_WIDTH + x].symbol_color = symbol_color;
+        } else {
+            std::cout << "WARNING: Out of bounds write access to grid view." << std::endl;
+        }
     }
     void set_background_color(unsigned int x, unsigned int y, const Color& background_color) {
-        _tiles[y * GRID_WIDTH + x].background_color = background_color;
+        if (x < GRID_WIDTH && y < GRID_HEIGHT) {
+            _tiles[y * GRID_WIDTH + x].background_color = background_color;
+        } else {
+            std::cout << "WARNING: Out of bounds write access to grid view." << std::endl;
+        }
     }
     void set_flip(unsigned int x, unsigned int y, bool flip_x, bool flip_y) {
-        _tiles[y * GRID_WIDTH + x].flip_x = flip_x;
-        _tiles[y * GRID_WIDTH + x].flip_y = flip_y;
+        if (x < GRID_WIDTH && y < GRID_HEIGHT) {
+            _tiles[y * GRID_WIDTH + x].flip_x = flip_x;
+            _tiles[y * GRID_WIDTH + x].flip_y = flip_y;
+        } else {
+            std::cout << "WARNING: Out of bounds write access to grid view." << std::endl;
+        }
     }
     
     void draw_character(unsigned int x, unsigned int y, char character) {

@@ -14,7 +14,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 Game::Game()
-: _test_text_control(""), _cursor_timer(0.0f), _flush_sound("flush"), _player_left_control(KEY_ARROW_LEFT, KEY_A), _player_right_control(KEY_ARROW_RIGHT, KEY_D) {
+: _test_text_control(""), _cursor_timer(0.0f)/*, _flush_sound("flush")*/, _player_left_control(KEY_ARROW_LEFT, KEY_A), _player_right_control(KEY_ARROW_RIGHT, KEY_D) {
     spawn_entity(Tile(0, Color(255,0,0), Color(0,255,0)), Position(10, 10));
     spawn_entity(Tile(0, Color(0,0,255), Color(255,255,0)), Position(12, 12));
     
@@ -63,7 +63,6 @@ void Game::update(float dt) {
     if (_cursor_timer > 0.5f) {
         _cursor_timer = 0.0f;
     }
-    //_grid_view.set_tile(_test_text_control.cursor(), 0, 219, symbol_color, background_color);
     _cursor_timer += dt;
     
     // Show FPS in the top left corner
@@ -74,12 +73,12 @@ void Game::update(float dt) {
     
     if (_player_left_control.pressed()) {
         _player_position->x -= 1;
-        _player_left_control.clear();
     }
+    _player_left_control.clear();
     if (_player_right_control.pressed()) {
         _player_position->x += 1;
-        _player_right_control.clear();
     }
+    _player_right_control.clear();
     
     // draw entites
     for (unsigned int i = 0; i < _entities.size(); ++i) {
