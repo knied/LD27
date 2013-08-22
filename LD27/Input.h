@@ -5,11 +5,16 @@
 //  Created by Kristof Niederholtmeyer on 17.08.13.
 //  Copyright (c) 2013 Kristof Niederholtmeyer. All rights reserved.
 //
+////////////////////////////////////////////////////////////////////////////////
 
 #ifndef __LD27__Input__
 #define __LD27__Input__
 
+////////////////////////////////////////////////////////////////////////////////
+
 #include <iostream>
+
+////////////////////////////////////////////////////////////////////////////////
 
 enum Key {
     KEY_NONE = 0x00,
@@ -62,13 +67,16 @@ enum Key {
     KEY_BACKSPACE = 0x90,
     KEY_RETURN = 0x91,
     KEY_ESCAPE = 0x91
-    
 };
+
+////////////////////////////////////////////////////////////////////////////////
 
 enum KeyEventType {
     KEY_PRESS_EVENT,
     KEY_RELEASE_EVENT
 };
+
+////////////////////////////////////////////////////////////////////////////////
 
 struct KeyEvent {
     Key key;
@@ -77,54 +85,28 @@ struct KeyEvent {
     KeyEvent(Key key, KeyEventType type) : key(key), type(type) {}
 };
 
+////////////////////////////////////////////////////////////////////////////////
+
 class Control {
     Key _key[2];
     bool _down[2];
     bool _pressed;
     
 public:
-    Control(Key key0 = KEY_NONE, Key key1 = KEY_NONE) {
-        _key[0] = key0;
-        _key[1] = key1;
-    }
+    Control(Key key0 = KEY_NONE, Key key1 = KEY_NONE);
     
-    void handle_event(const KeyEvent& event) {
-        if (event.key == _key[0]) {
-            if (event.type == KEY_PRESS_EVENT) {
-                if (!down()) {
-                    _pressed = true;
-                }
-                _down[0] = true;
-            } else {
-                _down[0] = false;
-            }
-        }
-        if (event.key == _key[1]) {
-            if (event.type == KEY_PRESS_EVENT) {
-                if (!down()) {
-                    _pressed = true;
-                }
-                _down[1] = true;
-            } else {
-                _down[1] = false;
-            }
-        }
-    }
+    void handle_event(const KeyEvent& event);
     
     // True, if one of the keys is currently held down.
-    bool down() const {
-        return _down[0] || _down[1];
-    }
+    bool down() const;
     // True, if one of the keys has been pressed since the last clear.
-    bool pressed() const {
-        return _pressed;
-    }
+    bool pressed() const;
     // Clears the pressed flag.
-    void clear() {
-        _pressed = false;
-    }
+    void clear();
     
 };
+
+////////////////////////////////////////////////////////////////////////////////
 
 class TextControl {
     std::string _text;
@@ -157,52 +139,19 @@ public:
                 bool support_A_to_Z = true,
                 bool support_0_to_9 = true,
                 bool support_space = true,
-                const std::string& support_custom = ".()[]{}+-*/=:")
-    : _text(text), _cursor((unsigned int)text.length()), _support_A_to_Z(support_A_to_Z), _support_0_to_9(support_0_to_9), _support_space(support_space), _support_custom(support_custom) {}
+                const std::string& support_custom = ".()[]{}+-*/=:");
     
-    void handle_text_event(const std::string& text) {
-        if (text.length() > 0) {
-            unsigned char character = text[0];
-            if (character >= 'a' && character <= 'z') {
-                character = character - 'a' + 'A';
-            }
-            
-            if (character_is_supported(character)) {
-                _text.insert(_text.begin() + _cursor, character);
-                _cursor++;
-            }
-        }
-    }
-    void handle_event(const KeyEvent& event) {
-        if (event.type == KEY_PRESS_EVENT) {
-            if (event.key == KEY_BACKSPACE) {
-                if (_cursor > 0) {
-                    _text.erase(_text.begin() + (_cursor - 1));
-                    _cursor--;
-                }
-            } else if (event.key == KEY_ARROW_LEFT) {
-                if (_cursor > 0) {
-                    _cursor--;
-                }
-            } else if (event.key == KEY_ARROW_RIGHT) {
-                if (_cursor < _text.length()) {
-                    _cursor++;
-                }
-            }
-        }
-    }
+    void handle_text_event(const std::string& text);
+    void handle_event(const KeyEvent& event);
     
-    void set_text(const std::string& text) {
-        _text = text;
-        _cursor = (unsigned int)_text.length();
-    }
+    void set_text(const std::string& text);
     
-    const std::string& text() const {
-        return _text;
-    }
-    unsigned int cursor() const {
-        return _cursor;
-    }
+    const std::string& text() const;
+    unsigned int cursor() const;
 };
 
+////////////////////////////////////////////////////////////////////////////////
+
 #endif /* defined(__LD27__Input__) */
+
+////////////////////////////////////////////////////////////////////////////////

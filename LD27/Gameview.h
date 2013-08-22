@@ -1,6 +1,16 @@
+//
+//  Gameview.h
+//  LD27
+//
+//  Created by Kristof Niederholtmeyer on 17.08.13.
+//  Copyright (c) 2013 Kristof Niederholtmeyer. All rights reserved.
+//
+////////////////////////////////////////////////////////////////////////////////
 
 #ifndef GAMEVIEW_H
 #define GAMEVIEW_H
+
+////////////////////////////////////////////////////////////////////////////////
 
 // Make Qt load the OpenGL 3 functions
 #define GL3_PROTOTYPES
@@ -10,6 +20,8 @@
 #include <sys/time.h>
 
 #include "Game.h"
+
+////////////////////////////////////////////////////////////////////////////////
 
 class GameView : public QGLWidget
 {
@@ -33,15 +45,12 @@ protected:
     void timerEvent(QTimerEvent* event);
     void keyPressEvent(QKeyEvent* event);
     void keyReleaseEvent(QKeyEvent* event);
-    void mousePressEvent(QMouseEvent* event);
-    void mouseReleaseEvent(QMouseEvent* event);
-    void mouseDoubleClickEvent(QMouseEvent* event);
-    void mouseMoveEvent(QMouseEvent* event);
 private:
     void compile_shader(GLuint shader_identifier, const std::string& shader_source);
     void link_program();
     void update_vertex_buffer();
     void move();
+    void handle_keyboard_event(QKeyEvent* event, KeyEventType type);
     
     Game _game;
 
@@ -53,7 +62,10 @@ private:
     GLuint _vertex_buffer_identifier;
     GLuint _program_identifier;
     GLuint _texture_identifier;
-    
 };
 
+////////////////////////////////////////////////////////////////////////////////
+
 #endif // GAMEVIEW_H
+
+////////////////////////////////////////////////////////////////////////////////
