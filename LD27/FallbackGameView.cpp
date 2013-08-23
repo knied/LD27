@@ -5,8 +5,11 @@
 //  Created by Kristof Niederholtmeyer on 23.08.13.
 //  Copyright (c) 2013 Kristof Niederholtmeyer. All rights reserved.
 //
+////////////////////////////////////////////////////////////////////////////////
 
 #include "FallbackGameView.h"
+
+////////////////////////////////////////////////////////////////////////////////
 
 FallbackGameView::FallbackGameView(QWidget *parent) : QWidget(parent), _time_accumulator(0.0f), _timer_id(0) {
     setFocusPolicy(Qt::StrongFocus);
@@ -175,3 +178,5 @@ void FallbackGameView::handle_keyboard_event(QKeyEvent* event, KeyEventType type
         _game.handle_keyboard_event(KeyEvent(key, type));
     }
 }
+
+////////////////////////////////////////////////////////////////////////////////

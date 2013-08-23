@@ -129,12 +129,12 @@
 				6DEFE90317BFC985000D5A40 /* Game.h */,
 				6D65A49C17BEC5D5000ACEC9 /* Gameview.cpp */,
 				6D65A49D17BEC5D5000ACEC9 /* Gameview.h */,
+				6D616F4917C75BDB00DB1B11 /* FallbackGameView.cpp */,
+				6D616F4A17C75BDB00DB1B11 /* FallbackGameView.h */,
 				6D65A49E17BEC5D5000ACEC9 /* Mainwindow.cpp */,
 				6D65A49F17BEC5D5000ACEC9 /* Mainwindow.h */,
 				6D65A4A417BEC8C5000ACEC9 /* Resources */,
 				6D65A47917BEC210000ACEC9 /* Supporting Files */,
-				6D616F4917C75BDB00DB1B11 /* FallbackGameView.cpp */,
-				6D616F4A17C75BDB00DB1B11 /* FallbackGameView.h */,
 			);
 			path = LD27;
 			sourceTree = "<group>";
@@ -308,7 +308,7 @@
 					"/Users/kristof/Library/Developer/Xcode/DerivedData/LD27-feiacuyyoietnjbnddtzfsjeuxfj/Build/Intermediates/LD27.Qt",
 					/Users/kristof/Qt5.0.2/5.0.2/clang_64/lib/QtMultimedia.framework/Versions/5/Headers,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -342,7 +342,7 @@
 					"/Users/kristof/Library/Developer/Xcode/DerivedData/LD27-feiacuyyoietnjbnddtzfsjeuxfj/Build/Intermediates/LD27.Qt",
 					/Users/kristof/Qt5.0.2/5.0.2/clang_64/lib/QtMultimedia.framework/Versions/5/Headers,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
 			};
 			name = Release;

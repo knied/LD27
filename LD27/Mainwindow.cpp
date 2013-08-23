@@ -17,7 +17,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
 #ifdef USE_OPENGL
     QGLFormat format;
+#ifdef USE_OPENGL_3_2
     format.setVersion(3,2);
+#else
+    format.setVersion(2,1);
+#endif
     format.setProfile(QGLFormat::CoreProfile);
     _game_view = 0;
     _game_view = new GameView(format);

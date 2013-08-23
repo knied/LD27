@@ -116,7 +116,9 @@ void GameView::update_vertex_buffer() {
         }
     }
 
+#ifdef USE_VAO
     glBindVertexArray(_vao);
+#endif
     glBindBuffer(GL_ARRAY_BUFFER, _vertex_buffer_identifier);
     glBufferData(GL_ARRAY_BUFFER,
                  GRID_WIDTH * GRID_HEIGHT * 6 * sizeof(Vertex),
@@ -157,7 +159,9 @@ void GameView::initializeGL()
 {
     glClearColor(0,0,0,0);
 
+#ifdef USE_VAO
     glGenVertexArrays(1, &_vao);
+#endif
     glGenBuffers(1, &_vertex_buffer_identifier);
     _program_identifier = glCreateProgram();
 
@@ -179,7 +183,7 @@ void GameView::initializeGL()
 
     update_vertex_buffer();
 
-#if defined(__APPLE__)
+#ifdef USE_GLSL_150
     // Use GLSL 1.5
     std::string vertex_shader;
     vertex_shader += "#version 150\n";
@@ -217,7 +221,7 @@ void GameView::initializeGL()
     fragment_shader += "  float r = texture(texture0, v_texcoord).r;\n";
     fragment_shader += "  frag_color = v_symbol_color * r + v_background_color * (1.0 - r);\n";
     fragment_shader += "}\n";
-#elif
+#else
     // Use GLSL 1.2
     std::string vertex_shader;
     vertex_shader += "#version 120\n";
@@ -250,7 +254,7 @@ void GameView::initializeGL()
     fragment_shader += "uniform sampler2D texture0;\n";
 
     fragment_shader += "void main() {\n";
-    fragment_shader += "  float r = texture(texture0, v_texcoord).r;\n";
+    fragment_shader += "  float r = texture2D(texture0, v_texcoord).r;\n";
     fragment_shader += "  gl_FragColor = v_symbol_color * r + v_background_color * (1.0 - r);\n";
     fragment_shader += "}\n";
 #endif
@@ -311,7 +315,9 @@ void GameView::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT);
     glUseProgram(_program_identifier);
+#ifdef USE_VAO
     glBindVertexArray(_vao);
+#endif
     glDrawArrays(GL_TRIANGLES, 0, GRID_WIDTH * GRID_HEIGHT * 6);
 
     GLenum error = glGetError();

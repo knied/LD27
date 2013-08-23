@@ -5,9 +5,12 @@
 //  Created by Kristof Niederholtmeyer on 23.08.13.
 //  Copyright (c) 2013 Kristof Niederholtmeyer. All rights reserved.
 //
+////////////////////////////////////////////////////////////////////////////////
 
 #ifndef __LD27__FallbackGameView__
 #define __LD27__FallbackGameView__
+
+////////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
 #include <sys/time.h>
@@ -16,6 +19,8 @@
 #include <QBitmap>
 
 #include "Game.h"
+
+////////////////////////////////////////////////////////////////////////////////
 
 class FallbackGameView : public QWidget {
 public:
@@ -30,7 +35,6 @@ private:
     QBrush _tilemap_brush;
     QBrush _fill_brush;
     
-    
 public:
     FallbackGameView(QWidget *parent = 0);
     
@@ -39,6 +43,7 @@ public:
     void timerEvent(QTimerEvent* event);
     void keyPressEvent(QKeyEvent* event);
     void keyReleaseEvent(QKeyEvent* event);
+    
 private:
     void move();
     void handle_keyboard_event(QKeyEvent* event, KeyEventType type);
@@ -52,4 +57,8 @@ private:
     
 };
 
+////////////////////////////////////////////////////////////////////////////////
+
 #endif /* defined(__LD27__FallbackGameView__) */
+
+////////////////////////////////////////////////////////////////////////////////
