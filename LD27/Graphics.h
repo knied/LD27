@@ -55,7 +55,11 @@ public:
     void set_tile(unsigned int x,
                   unsigned int y,
                   const Tile& tile) {
-        _tiles[y * GRID_WIDTH + x] = tile;
+        if (x < GRID_WIDTH && y < GRID_HEIGHT) {
+            _tiles[y * GRID_WIDTH + x] = tile;
+        } else {
+            std::cout << "WARNING: Out of bounds write access to grid view." << std::endl;
+        }
     }
     void set_tile(unsigned int x,
                   unsigned int y,

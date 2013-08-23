@@ -16,7 +16,6 @@
 #define GL3_PROTOTYPES
 
 #include <QGLWidget>
-#include <vector>
 #include <sys/time.h>
 
 #include "Game.h"

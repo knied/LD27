@@ -15,6 +15,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
+#ifdef USE_OPENGL
     QGLFormat format;
     format.setVersion(3,2);
     format.setProfile(QGLFormat::CoreProfile);
@@ -24,6 +25,15 @@ MainWindow::MainWindow(QWidget *parent)
         setCentralWidget(_game_view);
     setFixedSize(GameView::VIEW_WIDTH,
                  GameView::VIEW_HEIGHT);
+#else
+    _game_view = 0;
+    _game_view = new FallbackGameView();
+    if (_game_view) {
+        setCentralWidget(_game_view);
+    }
+    setFixedSize(FallbackGameView::VIEW_WIDTH,
+                 FallbackGameView::VIEW_HEIGHT);
+#endif
 }
 
 MainWindow::~MainWindow()

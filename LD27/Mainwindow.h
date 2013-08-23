@@ -12,8 +12,16 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
+#define USE_OPENGL
+
+////////////////////////////////////////////////////////////////////////////////
+
 #include <QMainWindow>
-#include "gameview.h"
+#ifdef USE_OPENGL
+#include "Gameview.h"
+#else
+#include "FallbackGameView.h"
+#endif
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -21,7 +29,11 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+#ifdef USE_OPENGL
     GameView* _game_view;
+#else
+    FallbackGameView* _game_view;
+#endif
     
 public:
     MainWindow(QWidget *parent = 0);

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6D5646EE17C2572600B70E81 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5646EC17C2572600B70E81 /* Sound.cpp */; };
+		6D616F4B17C75BDB00DB1B11 /* FallbackGameView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D616F4917C75BDB00DB1B11 /* FallbackGameView.cpp */; };
 		6D65A47317BEC210000ACEC9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D65A47217BEC210000ACEC9 /* Cocoa.framework */; };
 		6D65A47D17BEC210000ACEC9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6D65A47B17BEC210000ACEC9 /* InfoPlist.strings */; };
 		6D65A47F17BEC210000ACEC9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A47E17BEC210000ACEC9 /* main.cpp */; };
@@ -30,6 +31,8 @@
 /* Begin PBXFileReference section */
 		6D5646EC17C2572600B70E81 /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
 		6D5646ED17C2572600B70E81 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
+		6D616F4917C75BDB00DB1B11 /* FallbackGameView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FallbackGameView.cpp; sourceTree = "<group>"; };
+		6D616F4A17C75BDB00DB1B11 /* FallbackGameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FallbackGameView.h; sourceTree = "<group>"; };
 		6D65A46F17BEC210000ACEC9 /* LD27.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LD27.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D65A47217BEC210000ACEC9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6D65A47A17BEC210000ACEC9 /* LD27-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LD27-Info.plist"; sourceTree = "<group>"; };
@@ -130,6 +133,8 @@
 				6D65A49F17BEC5D5000ACEC9 /* Mainwindow.h */,
 				6D65A4A417BEC8C5000ACEC9 /* Resources */,
 				6D65A47917BEC210000ACEC9 /* Supporting Files */,
+				6D616F4917C75BDB00DB1B11 /* FallbackGameView.cpp */,
+				6D616F4A17C75BDB00DB1B11 /* FallbackGameView.h */,
 			);
 			path = LD27;
 			sourceTree = "<group>";
@@ -243,6 +248,7 @@
 				6DE1686B17C0138B00263BAC /* Input.cpp in Sources */,
 				6D5646EE17C2572600B70E81 /* Sound.cpp in Sources */,
 				6DE7EFC317C62C3900B2DA75 /* EntityComponent.cpp in Sources */,
+				6D616F4B17C75BDB00DB1B11 /* FallbackGameView.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

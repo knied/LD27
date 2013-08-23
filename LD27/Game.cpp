@@ -15,7 +15,7 @@
 
 Game::Game()
 : _test_text_control(""), _cursor_timer(0.0f)/*, _flush_sound("flush")*/, _player_left_control(KEY_ARROW_LEFT, KEY_A), _player_right_control(KEY_ARROW_RIGHT, KEY_D) {
-    spawn_entity(Tile(0, Color(255,0,0), Color(0,255,0)), Position(10, 10));
+    spawn_entity(Tile(0, Color(255,0,0), Color(0,255,0), true, true), Position(10, 10));
     spawn_entity(Tile(0, Color(0,0,255), Color(255,255,0)), Position(12, 12));
     
     _player = _entities[0];

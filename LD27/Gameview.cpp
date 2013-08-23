@@ -326,6 +326,8 @@ void GameView::move() {
     float frame_time = (float)(_lastTime.tv_sec - tmpTime.tv_sec) + (float)(_lastTime.tv_usec - tmpTime.tv_usec) * 0.000001f;
     const float dt = 0.05f;
     
+    //std::cout << "FPS: " << 1.0f / frame_time << std::endl;
+    
     _time_accumulator += frame_time;
     
     bool needs_redraw = false;
