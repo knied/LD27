@@ -11,9 +11,11 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
-Control::Control(Key key0, Key key1) {
+Control::Control(Key key0, Key key1) : _pressed(false) {
     _key[0] = key0;
     _key[1] = key1;
+    _down[0] = false;
+    _down[1] = false;
 }
 
 void Control::handle_event(const KeyEvent& event) {

@@ -22,6 +22,8 @@
 		6D65A4A017BEC5D5000ACEC9 /* Gameview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A49C17BEC5D5000ACEC9 /* Gameview.cpp */; };
 		6D65A4A117BEC5D5000ACEC9 /* Mainwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D65A49E17BEC5D5000ACEC9 /* Mainwindow.cpp */; };
 		6D781B8917C0B01E00B52767 /* QtMultimedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D781B8817C0B01E00B52767 /* QtMultimedia.framework */; };
+		6D7B4F2517C8ADE00070F143 /* PlayerController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D7B4F2317C8ADE00070F143 /* PlayerController.cpp */; };
+		6D7B4F2817C8AE280070F143 /* Types.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D7B4F2617C8AE280070F143 /* Types.cpp */; };
 		6DE1686B17C0138B00263BAC /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DE1686917C0138B00263BAC /* Input.cpp */; };
 		6DE7EFC317C62C3900B2DA75 /* EntityComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DE7EFC117C62C3900B2DA75 /* EntityComponent.cpp */; };
 		6DEFE90417BFC985000D5A40 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFE90217BFC985000D5A40 /* Game.cpp */; };
@@ -53,6 +55,10 @@
 		6D65A4A217BEC8C0000ACEC9 /* 8x8tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8x8tiles.png; sourceTree = "<group>"; };
 		6D65A4A517BEC925000ACEC9 /* resources.qrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = resources.qrc; sourceTree = "<group>"; };
 		6D781B8817C0B01E00B52767 /* QtMultimedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtMultimedia.framework; path = ../../Qt5.0.2/5.0.2/clang_64/lib/QtMultimedia.framework; sourceTree = "<group>"; };
+		6D7B4F2317C8ADE00070F143 /* PlayerController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerController.cpp; sourceTree = "<group>"; };
+		6D7B4F2417C8ADE00070F143 /* PlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerController.h; sourceTree = "<group>"; };
+		6D7B4F2617C8AE280070F143 /* Types.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Types.cpp; sourceTree = "<group>"; };
+		6D7B4F2717C8AE280070F143 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
 		6DE1686917C0138B00263BAC /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
 		6DE1686A17C0138B00263BAC /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input.h; sourceTree = "<group>"; };
 		6DE7EFC117C62C3900B2DA75 /* EntityComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityComponent.cpp; sourceTree = "<group>"; };
@@ -125,6 +131,10 @@
 				6DEFE90617BFEF59000D5A40 /* Graphics.h */,
 				6DE7EFC117C62C3900B2DA75 /* EntityComponent.cpp */,
 				6DE7EFC217C62C3900B2DA75 /* EntityComponent.h */,
+				6D7B4F2317C8ADE00070F143 /* PlayerController.cpp */,
+				6D7B4F2417C8ADE00070F143 /* PlayerController.h */,
+				6D7B4F2617C8AE280070F143 /* Types.cpp */,
+				6D7B4F2717C8AE280070F143 /* Types.h */,
 				6DEFE90217BFC985000D5A40 /* Game.cpp */,
 				6DEFE90317BFC985000D5A40 /* Game.h */,
 				6D65A49C17BEC5D5000ACEC9 /* Gameview.cpp */,
@@ -249,6 +259,8 @@
 				6D5646EE17C2572600B70E81 /* Sound.cpp in Sources */,
 				6DE7EFC317C62C3900B2DA75 /* EntityComponent.cpp in Sources */,
 				6D616F4B17C75BDB00DB1B11 /* FallbackGameView.cpp in Sources */,
+				6D7B4F2517C8ADE00070F143 /* PlayerController.cpp in Sources */,
+				6D7B4F2817C8AE280070F143 /* Types.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

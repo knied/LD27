@@ -28,6 +28,8 @@ struct Color {
     : r(r), g(g), b(b), a(a) {}
 };
 
+Color alpha_blend(const Color& dest, const Color& src);
+
 ////////////////////////////////////////////////////////////////////////////////
 
 struct Tile {

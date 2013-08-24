@@ -19,26 +19,31 @@
 #include "Input.h"
 #include "Sound.h"
 #include "EntityComponent.h"
-
-////////////////////////////////////////////////////////////////////////////////
-
-struct Position {
-    int x, y;
-    Position() : x(0), y(0) {}
-    Position(int x, int y) : x(x), y(y) {}
-};
+#include "Types.h"
+#include "PlayerController.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 
 class Game {
 public:
-    enum { GRID_WIDTH = 24 };
-    enum { GRID_HEIGHT = 24 };
+    enum { GRID_WIDTH = 25 };
+    enum { GRID_HEIGHT = 25 };
     
 private:
     GridView<GRID_WIDTH, GRID_HEIGHT> _grid_view;
     
-    TextControl _test_text_control;
+    EntityComponent<Orientation> _orientation_component;
+    EntityComponent<Tile> _tile_component;
+    
+    std::vector<Entity> _entities;
+    std::vector<EntityComponentHandle<Orientation> > _orientations;
+    std::vector<EntityComponentHandle<Tile> > _tiles;
+    
+    PlayerController _player_controller;
+    
+    EntityComponentHandle<Orientation> _camera_orientation;
+    
+    /*TextControl _test_text_control;
     float _cursor_timer;
     //Sound _flush_sound;
     
@@ -56,7 +61,7 @@ private:
     EntityComponentHandle<Tile> _player_tile;
     EntityComponentHandle<Position> _player_position;
     
-    void spawn_entity(const Tile& tile, const Position& position);
+    void spawn_entity(const Tile& tile, const Position& position);*/
     
 public:
     Game();

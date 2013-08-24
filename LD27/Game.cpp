@@ -13,76 +13,67 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
-Game::Game()
-: _test_text_control(""), _cursor_timer(0.0f)/*, _flush_sound("flush")*/, _player_left_control(KEY_ARROW_LEFT, KEY_A), _player_right_control(KEY_ARROW_RIGHT, KEY_D) {
-    spawn_entity(Tile(0, Color(255,0,0), Color(0,255,0), true, true), Position(10, 10));
-    spawn_entity(Tile(0, Color(0,0,255), Color(255,255,0)), Position(12, 12));
-    
-    _player = _entities[0];
-    _player_tile = _entity_tiles[0];
-    _player_position = _entity_positions[0];
-}
-
-void Game::spawn_entity(const Tile& tile, const Position& position) {
+Game::Game() {
+    // spawn player
     _entities.push_back(create_entity());
-    _entity_tiles.push_back(EntityComponentHandle<Tile>(&_tile_component, _entities.back(), tile));
-    _entity_positions.push_back(EntityComponentHandle<Position>(&_position_component, _entities.back(), position));
+    _orientations.push_back(EntityComponentHandle<Orientation>(&_orientation_component, _entities.back()));
+    _tiles.push_back(EntityComponentHandle<Tile>(&_tile_component, _entities.back()));
+    _player_controller.set_handles(_orientations.back(), _tiles.back());
+    _camera_orientation = _orientations.back();
 }
 
 void Game::handle_text_event(const std::string& text) {
-    _test_text_control.handle_text_event(text);
+    
 }
 
 void Game::handle_keyboard_event(const KeyEvent& event) {
-    _cursor_timer = 0.0f;
-    _test_text_control.handle_event(event);
-    _player_left_control.handle_event(event);
-    _player_right_control.handle_event(event);
+    _player_controller.handle_keyboard_event(event);
 }
 
 void Game::update(float dt) {
-    //if (!_flush_sound.is_playing()) {
-    //    _flush_sound.play(1);
-    //}
-    
+    // clear screen
     for (unsigned int y = 0; y < GRID_HEIGHT; ++y) {
         for (unsigned int x = 0; x < GRID_WIDTH; ++x) {
-            _grid_view.set_tile(x, y, rand() % 256, Color(rand() % 128, rand() % 128, rand() % 128), Color(rand() % 128, rand() % 128, rand() % 128), rand() % 2, rand() % 2);
+            int world_x = x - (GRID_WIDTH - 1) / 2 + _camera_orientation->position.x;
+            int world_y = y - (GRID_HEIGHT - 1) / 2 + _camera_orientation->position.y;
+            if (_player_controller.point_visible(world_x, world_y)) {
+                _grid_view.set_tile(x, y, 0, Color(40,40,40), Color(40,40,40));
+            } else {
+                _grid_view.set_tile(x, y, 0, Color(0,0,0), Color(0,0,0));
+            }
         }
     }
-    _grid_view.draw_text(0, 0, _test_text_control.text(), Color(255,255,255), Color(0,0,0));
     
-    Color symbol_color(255,255,255);
-    Color background_color(0,0,0);
-    _grid_view.set_symbol_color(_test_text_control.cursor(), 0, symbol_color);
-    _grid_view.set_background_color(_test_text_control.cursor(), 0, background_color);
-    if (_cursor_timer < 0.25f) {
-        _grid_view.set_flip(_test_text_control.cursor(), 0, false, false);
-        _grid_view.set_symbol(_test_text_control.cursor(), 0, 219);
+    //std::cout << "line:" << std::endl;
+    Line test_line(Position(-10, -3), Position(5, 2));
+    for (unsigned int i = 0; i < test_line.size(); ++i) {
+        //std::cout << i << " " << test_line[i].x << " " << test_line[i].y << std::endl;
+        
+        int view_x = test_line[i].x - _camera_orientation->position.x;
+        int view_y = test_line[i].y - _camera_orientation->position.y;
+        
+        int grid_x = view_x + (GRID_WIDTH - 1) / 2;
+        int grid_y = view_y + (GRID_HEIGHT - 1) / 2;
+        
+        _grid_view.set_tile(grid_x, grid_y, 0, Color(40,20,20), Color(40,20,20));
     }
-    if (_cursor_timer > 0.5f) {
-        _cursor_timer = 0.0f;
-    }
-    _cursor_timer += dt;
     
-    // Show FPS in the top left corner
-    std::stringstream fps_ss;
-    unsigned int fps = 1.0f / dt;
-    fps_ss << fps;
-    _grid_view.draw_text(0, GRID_HEIGHT-1, fps_ss.str(), Color(255,255,255));
-    
-    if (_player_left_control.pressed()) {
-        _player_position->x -= 1;
-    }
-    _player_left_control.clear();
-    if (_player_right_control.pressed()) {
-        _player_position->x += 1;
-    }
-    _player_right_control.clear();
-    
-    // draw entites
+    // draw entities
     for (unsigned int i = 0; i < _entities.size(); ++i) {
-        _grid_view.set_tile(_entity_positions[i]->x, _entity_positions[i]->y, *_entity_tiles[i]);
+        int view_x = _orientations[i]->position.x - _camera_orientation->position.x;
+        int view_y = _orientations[i]->position.y - _camera_orientation->position.y;
+        
+        int grid_x = view_x + (GRID_WIDTH - 1) / 2;
+        int grid_y = view_y + (GRID_HEIGHT - 1) / 2;
+        
+        if (grid_x >= 0 && grid_x < GRID_WIDTH && grid_y >= 0 && grid_y < GRID_HEIGHT) {
+            Color background_color = _grid_view.background_color(grid_x, grid_y);
+            
+            // draw this entity
+            _grid_view.set_tile(grid_x, grid_y, *_tiles[i]);
+            
+            _grid_view.set_background_color(grid_x, grid_y, alpha_blend(background_color, _grid_view.background_color(grid_x, grid_y)));
+        }
     }
 }
 
