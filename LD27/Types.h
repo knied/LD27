@@ -33,8 +33,17 @@ Type maximum(const Type& a, const Type& b) {
 
 struct Position {
     int x, y;
+    int old_x, old_y;
+    
     Position() : x(0), y(0) {}
-    Position(int x, int y) : x(x), y(y) {}
+    Position(int x, int y) : x(x), y(y), old_x(x), old_y(y) {}
+    const Position& operator = (const Position& position) {
+        old_x = x;
+        old_y = y;
+        x = position.x;
+        y = position.y;
+        return *this;
+    }
 };
 
 typedef enum {

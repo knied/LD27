@@ -14,13 +14,13 @@
 
 PlayerController::PlayerController(const EntityComponentHandle<Orientation>& orientation,
                                    const EntityComponentHandle<Tile>& tile)
-: _mode(DefaultMode), _orientation(orientation), _tile(tile),
+: _orientation(orientation), _tile(tile),
 _north_control(KEY_ARROW_UP), _south_control(KEY_ARROW_DOWN),
 _east_control(KEY_ARROW_RIGHT), _west_control(KEY_ARROW_LEFT),
 _torch_control(KEY_T),
-_animation_index(0),
-_fov(PI*0.4), _animation_timer(0.0f),
-_view(3), _torch_timer(0.0f) {
+_fov(PI*0.4),
+_view(3), _torch_timer(0.0f), _health_timer(0.0f),
+_health(10) {
     
 }
 
@@ -44,45 +44,49 @@ void PlayerController::handle_keyboard_event(const KeyEvent& event) {
 }
 
 void PlayerController::update(float dt, const Level& level) {
+    _health_timer += dt;
+    if (_health_timer > 1.0f) {
+        _health_timer = 0.0f;
+        if (_health < 10) {
+            _health++;
+        }
+    }
+    
+    
     Position dest = _orientation->position;
     
-    if (_animation_timer > 0.1f) {
-        _animation_timer = 0.0f;
-        
-        if (_north_control.pressed()
-            || _north_control.down()) {
-            dest.y += 1;
-            _orientation->direction = NORTH;
-        }
-        if (_south_control.pressed()
-            || _south_control.down()) {
-            dest.y -= 1;
-            _orientation->direction = SOUTH;
-        }
-        if (_east_control.pressed()
-            || _east_control.down()) {
-            dest.x += 1;
-            _orientation->direction = EAST;
-        }
-        if (_west_control.pressed()
-            || _west_control.down()) {
-            dest.x -= 1;
-            _orientation->direction = WEST;
-        }
-        
-        if (_torch_control.pressed()) {
-            _view = 12;
-        }
-        
-        _north_control.clear();
-        _south_control.clear();
-        _east_control.clear();
-        _west_control.clear();
-        
-        _torch_control.clear();
+    if (_north_control.pressed()
+        || _north_control.down()) {
+        dest.y += 1;
+        _orientation->direction = NORTH;
     }
-    _animation_timer += dt;
+    if (_south_control.pressed()
+        || _south_control.down()) {
+        dest.y -= 1;
+        _orientation->direction = SOUTH;
+    }
+    if (_east_control.pressed()
+        || _east_control.down()) {
+        dest.x += 1;
+        _orientation->direction = EAST;
+    }
+    if (_west_control.pressed()
+        || _west_control.down()) {
+        dest.x -= 1;
+        _orientation->direction = WEST;
+    }
     
+    if (_torch_control.pressed()) {
+        //_health--;
+        _view = 12;
+    }
+    
+    _north_control.clear();
+    _south_control.clear();
+    _east_control.clear();
+    _west_control.clear();
+    
+    _torch_control.clear();
     
     if (level.at(dest.x, dest.y) == LevelFloor
         && point_visible(dest.x, dest.y, level)) {
@@ -187,18 +191,22 @@ int PlayerController::point_visible(int x, int y, const Level& level) const {
     return 0;
 }
 
-/*bool PlayerController::draw_move_select() const {
-    return _mode == MoveMode || _mode == MoveAnimationMode;
-}
-unsigned int PlayerController::move_select_start() const {
-    return _animation_index;
-}
-const Line& PlayerController::move_select() const {
-    return _move_select;
-}*/
-
 bool PlayerController::torch_active() const {
     return _view == 12;
+}
+
+const Position& PlayerController::position() const {
+    return _orientation->position;
+}
+
+void PlayerController::hurt() {
+    if (_health > 0) {
+        _health--;
+    }
+}
+
+float PlayerController::blood_factor() const {
+    return 1.0f - (float)_health / 10.0f;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -14,13 +14,15 @@
 
 #include <iostream>
 #include <vector>
+#include "Types.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 
 typedef enum {
     LevelFloor,
     LevelWall,
-    LevelSpawn
+    LevelSpawn,
+    LevelMonsterSpawn
 } LevelTile;
 
 class Level {
@@ -34,8 +36,8 @@ class Level {
     unsigned int _width;
     unsigned int _height;
     
-    int _spawn_x;
-    int _spawn_y;
+    Position _spawn;
+    std::vector<Position> _monster_spawns;
     
     LevelTile _default_tile;
     
@@ -50,8 +52,8 @@ public:
     bool known_at(int x, int y) const;
     void set_known(int x, int y);
     
-    int spawn_x() const;
-    int spawn_y() const;
+    const Position& spawn() const;
+    const std::vector<Position>& monster_spawns() const;
 };
 
 ////////////////////////////////////////////////////////////////////////////////

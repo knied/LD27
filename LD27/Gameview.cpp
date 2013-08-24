@@ -330,7 +330,7 @@ void GameView::move() {
     timeval tmpTime = _lastTime;
     gettimeofday(&_lastTime, 0);
     float frame_time = (float)(_lastTime.tv_sec - tmpTime.tv_sec) + (float)(_lastTime.tv_usec - tmpTime.tv_usec) * 0.000001f;
-    const float dt = 0.05f;
+    const float dt = 0.1f;
     
     //std::cout << "FPS: " << 1.0f / frame_time << std::endl;
     

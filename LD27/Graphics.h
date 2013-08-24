@@ -29,6 +29,7 @@ struct Color {
 };
 
 Color alpha_blend(const Color& dest, const Color& src);
+Color blend(const Color& a, const Color& b, float t);
 
 ////////////////////////////////////////////////////////////////////////////////
 

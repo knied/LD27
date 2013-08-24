@@ -12,7 +12,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
-Level::Level(const std::string& name) : _spawn_x(0), _spawn_y(0), _default_tile(LevelWall) {
+Level::Level(const std::string& name) : _default_tile(LevelWall) {
     QImage img(name.c_str());
     _width = img.width();
     _height = img.height();
@@ -26,8 +26,10 @@ Level::Level(const std::string& name) : _spawn_x(0), _spawn_y(0), _default_tile(
                                           qGreen(rgb),
                                           qBlue(rgb));
             if (tile == LevelSpawn) {
-                _spawn_x = x;
-                _spawn_y = (_height - y - 1);
+                _spawn = Position(x,_height - y - 1);
+                _data[(_height - y - 1) * _width + x].tile = LevelFloor;
+            } else if (tile == LevelMonsterSpawn) {
+                _monster_spawns.push_back(Position(x,_height - y - 1));
                 _data[(_height - y - 1) * _width + x].tile = LevelFloor;
             } else {
                 _data[(_height - y - 1) * _width + x].tile = tile;
@@ -59,6 +61,10 @@ LevelTile Level::tile_for_rgb(unsigned char r,
         return LevelSpawn;
     }
     
+    if (r == 0 && g == 255 && b == 0) {
+        return LevelMonsterSpawn;
+    }
+    
     return LevelWall;
 }
 
@@ -76,12 +82,12 @@ void Level::set_known(int x, int y) {
     _data[y * _width + x].known = true;
 }
 
-int Level::spawn_x() const {
-    return _spawn_x;
+const Position& Level::spawn() const {
+    return _spawn;
 }
 
-int Level::spawn_y() const {
-    return _spawn_y;
+const std::vector<Position>& Level::monster_spawns() const {
+    return _monster_spawns;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

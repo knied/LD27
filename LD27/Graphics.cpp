@@ -28,4 +28,11 @@ Color alpha_blend(const Color& dest, const Color& src) {
     return Color(r,g,b);
 }
 
+Color blend(const Color& a, const Color& b, float t) {
+    int nr = a.r * (1.0f - t) + b.r * t;
+    int ng = a.g * (1.0f - t) + b.g * t;
+    int nb = a.b * (1.0f - t) + b.b * t;
+    return Color(nr, ng, nb);
+}
+
 ////////////////////////////////////////////////////////////////////////////////

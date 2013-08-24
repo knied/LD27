@@ -21,6 +21,7 @@
 #include "EntityComponent.h"
 #include "Types.h"
 #include "PlayerController.h"
+#include "MonsterController.h"
 #include "Level.h"
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -41,30 +42,14 @@ private:
     std::vector<EntityComponentHandle<Tile> > _tiles;
     
     PlayerController _player_controller;
+    std::vector<MonsterController> _monster_controllers;
     
     EntityComponentHandle<Orientation> _camera_orientation;
     
     Level* _level;
+    unsigned char wall_symbol(int x, int y, bool& flip_x, bool& flip_y) const;
     
-    /*TextControl _test_text_control;
-    float _cursor_timer;
-    //Sound _flush_sound;
-    
-    EntityComponent<Tile> _tile_component;
-    EntityComponent<Position> _position_component;
-    
-    std::vector<Entity> _entities;
-    std::vector<EntityComponentHandle<Tile> > _entity_tiles;
-    std::vector<EntityComponentHandle<Position> > _entity_positions;
-    
-    Control _player_left_control;
-    Control _player_right_control;
-    
-    Entity _player;
-    EntityComponentHandle<Tile> _player_tile;
-    EntityComponentHandle<Position> _player_position;
-    
-    void spawn_entity(const Tile& tile, const Position& position);*/
+    bool _game_over;
     
 public:
     Game();

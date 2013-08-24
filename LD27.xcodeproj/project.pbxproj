@@ -26,6 +26,7 @@
 		6D7B4F2817C8AE280070F143 /* Types.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D7B4F2617C8AE280070F143 /* Types.cpp */; };
 		6D7B4F2B17C8EE8E0070F143 /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D7B4F2917C8EE8E0070F143 /* Level.cpp */; };
 		6D7B4F2D17C8F4AF0070F143 /* Level.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7B4F2C17C8F4AF0070F143 /* Level.png */; };
+		6D7B4F3017C9365D0070F143 /* MonsterController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D7B4F2E17C9365D0070F143 /* MonsterController.cpp */; };
 		6DE1686B17C0138B00263BAC /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DE1686917C0138B00263BAC /* Input.cpp */; };
 		6DE7EFC317C62C3900B2DA75 /* EntityComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DE7EFC117C62C3900B2DA75 /* EntityComponent.cpp */; };
 		6DEFE90417BFC985000D5A40 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFE90217BFC985000D5A40 /* Game.cpp */; };
@@ -64,6 +65,8 @@
 		6D7B4F2917C8EE8E0070F143 /* Level.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Level.cpp; sourceTree = "<group>"; };
 		6D7B4F2A17C8EE8E0070F143 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
 		6D7B4F2C17C8F4AF0070F143 /* Level.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level.png; sourceTree = "<group>"; };
+		6D7B4F2E17C9365D0070F143 /* MonsterController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MonsterController.cpp; sourceTree = "<group>"; };
+		6D7B4F2F17C9365D0070F143 /* MonsterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterController.h; sourceTree = "<group>"; };
 		6DE1686917C0138B00263BAC /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
 		6DE1686A17C0138B00263BAC /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input.h; sourceTree = "<group>"; };
 		6DE7EFC117C62C3900B2DA75 /* EntityComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityComponent.cpp; sourceTree = "<group>"; };
@@ -140,6 +143,8 @@
 				6D7B4F2A17C8EE8E0070F143 /* Level.h */,
 				6D7B4F2317C8ADE00070F143 /* PlayerController.cpp */,
 				6D7B4F2417C8ADE00070F143 /* PlayerController.h */,
+				6D7B4F2E17C9365D0070F143 /* MonsterController.cpp */,
+				6D7B4F2F17C9365D0070F143 /* MonsterController.h */,
 				6D7B4F2617C8AE280070F143 /* Types.cpp */,
 				6D7B4F2717C8AE280070F143 /* Types.h */,
 				6DEFE90217BFC985000D5A40 /* Game.cpp */,
@@ -271,6 +276,7 @@
 				6D7B4F2517C8ADE00070F143 /* PlayerController.cpp in Sources */,
 				6D7B4F2817C8AE280070F143 /* Types.cpp in Sources */,
 				6D7B4F2B17C8EE8E0070F143 /* Level.cpp in Sources */,
+				6D7B4F3017C9365D0070F143 /* MonsterController.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
