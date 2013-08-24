@@ -21,6 +21,7 @@
 #include "EntityComponent.h"
 #include "Types.h"
 #include "PlayerController.h"
+#include "Level.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -42,6 +43,8 @@ private:
     PlayerController _player_controller;
     
     EntityComponentHandle<Orientation> _camera_orientation;
+    
+    Level* _level;
     
     /*TextControl _test_text_control;
     float _cursor_timer;
@@ -65,6 +68,7 @@ private:
     
 public:
     Game();
+    ~Game();
     
     void handle_text_event(const std::string& text);
     void handle_keyboard_event(const KeyEvent& event);

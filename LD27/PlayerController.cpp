@@ -14,15 +14,92 @@
 
 PlayerController::PlayerController(const EntityComponentHandle<Orientation>& orientation,
                                    const EntityComponentHandle<Tile>& tile)
-: _orientation(orientation), _tile(tile),
+: _mode(DefaultMode), _orientation(orientation), _tile(tile),
 _north_control(KEY_ARROW_UP), _south_control(KEY_ARROW_DOWN),
 _east_control(KEY_ARROW_RIGHT), _west_control(KEY_ARROW_LEFT),
-_fov(PI*0.4) {
+_torch_control(KEY_T),
+_animation_index(0),
+_fov(PI*0.4), _animation_timer(0.0f),
+_view(3), _torch_timer(0.0f) {
     
 }
 
-void PlayerController::update_tile() {
-    _tile->symbol_color = Color(127, 255, 127, 255);
+void PlayerController::set_handles(const EntityComponentHandle<Orientation>& orientation,
+                                   const EntityComponentHandle<Tile>& tile) {
+    _orientation = orientation;
+    _tile = tile;
+}
+
+void PlayerController::set_position(const Position& position) {
+    _orientation->position = position;
+}
+
+void PlayerController::handle_keyboard_event(const KeyEvent& event) {
+    _north_control.handle_event(event);
+    _south_control.handle_event(event);
+    _east_control.handle_event(event);
+    _west_control.handle_event(event);
+    
+    _torch_control.handle_event(event);
+}
+
+void PlayerController::update(float dt, const Level& level) {
+    Position dest = _orientation->position;
+    
+    if (_animation_timer > 0.1f) {
+        _animation_timer = 0.0f;
+        
+        if (_north_control.pressed()
+            || _north_control.down()) {
+            dest.y += 1;
+            _orientation->direction = NORTH;
+        }
+        if (_south_control.pressed()
+            || _south_control.down()) {
+            dest.y -= 1;
+            _orientation->direction = SOUTH;
+        }
+        if (_east_control.pressed()
+            || _east_control.down()) {
+            dest.x += 1;
+            _orientation->direction = EAST;
+        }
+        if (_west_control.pressed()
+            || _west_control.down()) {
+            dest.x -= 1;
+            _orientation->direction = WEST;
+        }
+        
+        if (_torch_control.pressed()) {
+            _view = 12;
+        }
+        
+        _north_control.clear();
+        _south_control.clear();
+        _east_control.clear();
+        _west_control.clear();
+        
+        _torch_control.clear();
+    }
+    _animation_timer += dt;
+    
+    
+    if (level.at(dest.x, dest.y) == LevelFloor
+        && point_visible(dest.x, dest.y, level)) {
+        _orientation->position = dest;
+    }
+    
+    if (_torch_timer > 10.0f) {
+        _torch_timer = 0.0f;
+        _view = 3;
+    }
+    
+    if (_view == 12) {
+        _torch_timer += dt;
+    }
+    
+    // update the tile
+    _tile->symbol_color = Color(63, 127, 63, 255);
     _tile->background_color = Color(0, 0, 0, 0);
     
     switch (_orientation->direction) {
@@ -49,54 +126,36 @@ void PlayerController::update_tile() {
     }
 }
 
-void PlayerController::update_direction() {
-    if (_north_control.pressed()) {
-        std::cout << "north" << std::endl;
-        _orientation->direction = NORTH;
+int PlayerController::point_visible(int x, int y, const Level& level) const {
+    int offset_x = 0;
+    int offset_y = 0;
+    
+    switch (_orientation->direction) {
+        case NORTH: offset_y = -2; break;
+        case SOUTH: offset_y = 2; break;
+        case EAST: offset_x = -2; break;
+        case WEST: offset_x = 2; break;
     }
-    if (_south_control.pressed()) {
-        std::cout << "south" << std::endl;
-        _orientation->direction = SOUTH;
+    
+    if (_orientation->position.x + offset_x == x && _orientation->position.y + offset_y == y) {
+        return 0;
     }
-    if (_east_control.pressed()) {
-        std::cout << "east" << std::endl;
-        _orientation->direction = EAST;
-    }
-    if (_west_control.pressed()) {
-        std::cout << "west" << std::endl;
-        _orientation->direction = WEST;
-    }
-}
-
-void PlayerController::set_handles(const EntityComponentHandle<Orientation>& orientation,
-                                   const EntityComponentHandle<Tile>& tile) {
-    _orientation = orientation;
-    _tile = tile;
-    update_tile();
-}
-
-void PlayerController::handle_keyboard_event(const KeyEvent& event) {
-    _north_control.handle_event(event);
-    _south_control.handle_event(event);
-    _east_control.handle_event(event);
-    _west_control.handle_event(event);
-    update_direction();
-    update_tile();
-    _north_control.clear();
-    _south_control.clear();
-    _east_control.clear();
-    _west_control.clear();
-}
-
-bool PlayerController::point_visible(int x, int y) const {
-    if (x == _orientation->position.x && y == _orientation->position.y) {
+    
+    int dx = x - _orientation->position.x;
+    int dy = y - _orientation->position.y;
+    
+    /*if (dx * dx + dy * dy < 2*2) {
         return true;
+    }*/
+    if (dx * dx + dy * dy > _view*_view) {
+        return 0;
     }
     
-    float _lower_bound = -_fov;
-    float _higher_bound = _fov;
+    /*if (x == _orientation->position.x && y == _orientation->position.y) {
+        return true;
+    }*/
     
-    float phi = atan2(y-_orientation->position.y,x-_orientation->position.x);
+    float phi = atan2(dy - offset_y,dx - offset_x);
     
     if (_orientation->direction == NORTH) {
         phi -= PI * 0.5f;
@@ -110,10 +169,36 @@ bool PlayerController::point_visible(int x, int y) const {
         }
     }
     
-    if (phi > _lower_bound && phi < _higher_bound) {
-        return true;
+    if (phi >= -_fov && phi <= _fov) {
+        Line view_ray(Position(_orientation->position.x,
+                               _orientation->position.y),
+                      Position(x, y));
+        for (unsigned int i = 0; i < view_ray.size(); ++i) {
+            Position current_position = view_ray[i];
+            if (level.at(current_position.x,
+                         current_position.y) == LevelWall) {
+                if (current_position.x != x || current_position.y != y) {
+                    return 0;
+                }
+            }
+        }
+        return view_ray.size();
     }
-    return false;
+    return 0;
+}
+
+/*bool PlayerController::draw_move_select() const {
+    return _mode == MoveMode || _mode == MoveAnimationMode;
+}
+unsigned int PlayerController::move_select_start() const {
+    return _animation_index;
+}
+const Line& PlayerController::move_select() const {
+    return _move_select;
+}*/
+
+bool PlayerController::torch_active() const {
+    return _view == 12;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

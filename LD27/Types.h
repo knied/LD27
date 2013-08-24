@@ -69,6 +69,11 @@ public:
     
     unsigned int size() const;
     const Position& operator [] (unsigned int index) const;
+    
+    const Position& start() const;
+    const Position& end() const;
+    
+    Direction direction() const;
 };
 
 ////////////////////////////////////////////////////////////////////////////////

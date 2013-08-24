@@ -74,12 +74,14 @@ void Line::update_points() {
         int current_y = from_y;
         if (dy > 0) {
             unsigned int index = 1;
-            for (; current_y < y; ++current_y) {
+            current_y++;
+            for (; current_y <= y; ++current_y) {
                 _points[index++] = Position(current_x, current_y);
             }
         } else if (dy < 0) {
             unsigned int index = 1;
-            for (; current_y > y; --current_y) {
+            current_y--;
+            for (; current_y >= y; --current_y) {
                 _points[index++] = Position(current_x, current_y);
             }
         }
@@ -201,6 +203,33 @@ unsigned int Line::size() const {
 
 const Position& Line::operator [] (unsigned int index) const {
     return _points[index];
+}
+
+const Position& Line::start() const {
+    return _start;
+}
+
+const Position& Line::end() const {
+    return _end;
+}
+
+Direction Line::direction() const {
+    int dx = _end.x - _start.x;
+    int dy = _end.y - _start.y;
+    
+    if (abs(dx) > abs(dy)) {
+        if (dx < 0) {
+            return WEST;
+        } else {
+            return EAST;
+        }
+    } else {
+        if (dy < 0) {
+            return SOUTH;
+        } else {
+            return NORTH;
+        }
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
