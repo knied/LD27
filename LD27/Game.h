@@ -34,6 +34,8 @@ public:
 private:
     GridView<GRID_WIDTH, GRID_HEIGHT> _grid_view;
     
+    Control _restart_control;
+    
     Sound _next_level_sound;
     
     EntityComponent<Orientation> _orientation_component;
@@ -63,6 +65,7 @@ private:
     float _game_finish_fade_out;
     
     void load_level(unsigned int level);
+    void restart();
     
     float _level_fade_out;
     bool _level_finished;

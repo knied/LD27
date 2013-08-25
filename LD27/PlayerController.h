@@ -87,6 +87,8 @@ public:
     void add_key();
     unsigned int keys() const {return _keys;}
     unsigned int torches() const {return _torches;}
+    
+    void restart();
 };
 
 ////////////////////////////////////////////////////////////////////////////////

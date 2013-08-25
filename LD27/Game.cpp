@@ -13,7 +13,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
-Game::Game() : _next_level_sound("next_level"), _level(0), _game_over(false), _game_finished(false), _current_level(0), _level_fade_out(1.0f), _level_finished(false), _game_finish_fade_out(0.0f) {
+Game::Game() : _next_level_sound("next_level"), _level(0), _game_over(false), _game_finished(false), _current_level(0), _level_fade_out(1.0f), _level_finished(false), _game_finish_fade_out(0.0f), _restart_control(KEY_RETURN) {
     // spawn player
     /*_entities.push_back(create_entity());
     _orientations.push_back(EntityComponentHandle<Orientation>(&_orientation_component, _entities.back()));
@@ -59,6 +59,9 @@ void Game::load_level(unsigned int level) {
         _player_controller.set_handles(_orientations.back(), _tiles.back());
         _camera_orientation = _orientations.back();
         
+        if (_level) {
+            delete _level;
+        }
         _level = new Level(_level_names[level].c_str());
         _player_controller.set_position(_level->spawn());
         
@@ -77,12 +80,26 @@ void Game::load_level(unsigned int level) {
     }
 }
 
+void Game::restart() {
+    _player_controller.restart();
+    
+    _game_over = false;
+    _game_finished = false;
+    _level_fade_out = 1.0f;
+    _level_finished = false;
+    _game_finish_fade_out = 0.0f;
+    
+    _current_level = 0;
+    load_level(_current_level);
+}
+
 void Game::handle_text_event(const std::string& text) {
     
 }
 
 void Game::handle_keyboard_event(const KeyEvent& event) {
     _player_controller.handle_keyboard_event(event);
+    _restart_control.handle_event(event);
 }
 
 unsigned char Game::symbol(int x, int y, bool& flip_x, bool& flip_y) const {
@@ -154,6 +171,13 @@ void Game::colors(int x, int y,
 }
 
 void Game::update(float dt) {
+    if (_game_over || _game_finished) {
+        if (_restart_control.pressed()) {
+            restart();
+        }
+    }
+    _restart_control.clear();
+    
     if (!_game_over && !_game_finished && !_level_finished) {
         _player_controller.update(dt, *_level);
         for (unsigned int i = 0; i < _monster_controllers.size(); ++i) {
@@ -372,10 +396,12 @@ void Game::update(float dt) {
     
     if (_game_over) {
         _grid_view.draw_text(8, 12, "GAME OVER", Color(255,255,255));
+        _grid_view.draw_text(3, 1, "[ENTER TO RESTART]", Color(255,255,255));
     } else if (_game_finished) {
         _grid_view.draw_text(5, 14, "CONGRATULATIONS.", Color(0,0,0));
         _grid_view.draw_text(2, 12, "YOU MADE IT OUT OF THE", Color(0,0,0));
         _grid_view.draw_text(9, 10, "DUNGEON.", Color(0,0,0));
+        _grid_view.draw_text(3, 1, "[ENTER TO RESTART]", Color(0,0,0));
     } else {
         if (_player_controller.blood_factor() == 1.0f) {
             _game_over = true;

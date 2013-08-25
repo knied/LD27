@@ -356,4 +356,26 @@ float PlayerController::show_inventory() const {
     return minimum(_show_inventory, 1.0f);
 }
 
+void PlayerController::restart() {
+    _view = 3;
+    _torch_timer = 0.0f;
+    _health_timer = 0.0f;
+    _health = 10;
+    _show_locked = 0.0f;
+    _show_move_instructions = 1.0f;
+    _fade_out_move_instructions = false;
+    _show_torch_instructions = 0.0f;
+    _fade_out_torch_instructions = false;
+    _keys = 0;
+    _torches = 0;
+    _show_inventory = 0.0f;
+    
+    _north_control.clear();
+    _south_control.clear();
+    _east_control.clear();
+    _west_control.clear();
+    
+    _torch_control.clear();
+}
+
 ////////////////////////////////////////////////////////////////////////////////
