@@ -22,7 +22,11 @@ typedef enum {
     LevelFloor,
     LevelWall,
     LevelSpawn,
-    LevelMonsterSpawn
+    LevelMonsterSpawn,
+    LevelDoor,
+    LevelKey,
+    LevelExit,
+    LevelTorch
 } LevelTile;
 
 class Level {
@@ -38,6 +42,8 @@ class Level {
     
     Position _spawn;
     std::vector<Position> _monster_spawns;
+    std::vector<Position> _key_spawns;
+    std::vector<Position> _torch_spawns;
     
     LevelTile _default_tile;
     
@@ -51,9 +57,12 @@ public:
     const LevelTile& at(int x, int y) const;
     bool known_at(int x, int y) const;
     void set_known(int x, int y);
+    void set_tile(int x, int y, const LevelTile& tile);
     
     const Position& spawn() const;
     const std::vector<Position>& monster_spawns() const;
+    const std::vector<Position>& key_spawns() const;
+    const std::vector<Position>& torch_spawns() const;
 };
 
 ////////////////////////////////////////////////////////////////////////////////

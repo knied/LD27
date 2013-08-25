@@ -17,10 +17,14 @@ PlayerController::PlayerController(const EntityComponentHandle<Orientation>& ori
 : _orientation(orientation), _tile(tile),
 _north_control(KEY_ARROW_UP), _south_control(KEY_ARROW_DOWN),
 _east_control(KEY_ARROW_RIGHT), _west_control(KEY_ARROW_LEFT),
-_torch_control(KEY_T),
+_torch_control(KEY_SPACE),
 _fov(PI*0.4),
 _view(3), _torch_timer(0.0f), _health_timer(0.0f),
-_health(10) {
+_health(10), _show_locked(0.0f),
+_show_move_instructions(1.0f), _fade_out_move_instructions(false),
+_show_torch_instructions(0.0f), _fade_out_torch_instructions(false),
+_keys(0), _torches(0),
+_show_inventory(0.0f) {
     
 }
 
@@ -43,12 +47,19 @@ void PlayerController::handle_keyboard_event(const KeyEvent& event) {
     _torch_control.handle_event(event);
 }
 
-void PlayerController::update(float dt, const Level& level) {
+void PlayerController::update(float dt, Level& level) {
     _health_timer += dt;
     if (_health_timer > 1.0f) {
         _health_timer = 0.0f;
         if (_health < 10) {
             _health++;
+        }
+    }
+    
+    if (_show_inventory > 0.0f) {
+        _show_inventory -= dt;
+        if (_show_inventory < 0.0f) {
+            _show_inventory = 0.0f;
         }
     }
     
@@ -59,26 +70,35 @@ void PlayerController::update(float dt, const Level& level) {
         || _north_control.down()) {
         dest.y += 1;
         _orientation->direction = NORTH;
+        _fade_out_move_instructions = true;
     }
     if (_south_control.pressed()
         || _south_control.down()) {
         dest.y -= 1;
         _orientation->direction = SOUTH;
+        _fade_out_move_instructions = true;
     }
     if (_east_control.pressed()
         || _east_control.down()) {
         dest.x += 1;
         _orientation->direction = EAST;
+        _fade_out_move_instructions = true;
     }
     if (_west_control.pressed()
         || _west_control.down()) {
         dest.x -= 1;
         _orientation->direction = WEST;
+        _fade_out_move_instructions = true;
     }
     
     if (_torch_control.pressed()) {
+        _show_inventory = 4.0f;
         //_health--;
-        _view = 12;
+        if (_torches > 0 && _view != 12) {
+            _torches--;
+            _fade_out_torch_instructions = true;
+            _view = 12;
+        }
     }
     
     _north_control.clear();
@@ -88,9 +108,71 @@ void PlayerController::update(float dt, const Level& level) {
     
     _torch_control.clear();
     
-    if (level.at(dest.x, dest.y) == LevelFloor
+    if ((level.at(dest.x, dest.y) == LevelFloor
+        || level.at(dest.x, dest.y) == LevelExit)
         && point_visible(dest.x, dest.y, level)) {
         _orientation->position = dest;
+    }
+    
+    if (_show_locked > 0.0f) {
+        _show_locked -= dt;
+        if (_show_locked < 0.0f) {
+            _show_locked = 0.0f;
+        }
+    }
+    
+    if (_fade_out_move_instructions && _show_move_instructions > 0.0f) {
+        _show_move_instructions -= dt;
+        if (_show_move_instructions < 0.0f) {
+            _show_move_instructions = 0.0f;
+        }
+    }
+    
+    if (_fade_out_torch_instructions && _show_torch_instructions > 0.0f) {
+        _show_torch_instructions -= dt;
+        if (_show_torch_instructions < 0.0f) {
+            _show_torch_instructions = 0.0f;
+        }
+    }
+    
+    if (level.at(_orientation->position.x-1, _orientation->position.y) == LevelDoor) {
+        if (_keys > 0) {
+            _keys--;
+            level.set_tile(_orientation->position.x-1, _orientation->position.y, LevelFloor);
+            _show_inventory = 4.0f;
+        } else {
+            _show_locked = 1.0f;
+        }
+    }
+    
+    if (level.at(_orientation->position.x+1, _orientation->position.y) == LevelDoor) {
+        if (_keys > 0) {
+            _keys--;
+            level.set_tile(_orientation->position.x+1, _orientation->position.y, LevelFloor);
+            _show_inventory = 4.0f;
+        } else {
+            _show_locked = 1.0f;
+        }
+    }
+    
+    if (level.at(_orientation->position.x, _orientation->position.y-1) == LevelDoor) {
+        if (_keys > 0) {
+            _keys--;
+            level.set_tile(_orientation->position.x, _orientation->position.y-1, LevelFloor);
+            _show_inventory = 4.0f;
+        } else {
+            _show_locked = 1.0f;
+        }
+    }
+    
+    if (level.at(_orientation->position.x, _orientation->position.y+1) == LevelDoor) {
+        if (_keys > 0) {
+            _keys--;
+            level.set_tile(_orientation->position.x, _orientation->position.y+1, LevelFloor);
+            _show_inventory = 4.0f;
+        } else {
+            _show_locked = 1.0f;
+        }
     }
     
     if (_torch_timer > 10.0f) {
@@ -103,7 +185,11 @@ void PlayerController::update(float dt, const Level& level) {
     }
     
     // update the tile
-    _tile->symbol_color = Color(63, 127, 63, 255);
+    if (torch_active()) {
+        _tile->symbol_color = Color(63, 127, 63);
+    } else {
+        _tile->symbol_color = Color(31, 63, 31);
+    }
     _tile->background_color = Color(0, 0, 0, 0);
     
     switch (_orientation->direction) {
@@ -180,7 +266,9 @@ int PlayerController::point_visible(int x, int y, const Level& level) const {
         for (unsigned int i = 0; i < view_ray.size(); ++i) {
             Position current_position = view_ray[i];
             if (level.at(current_position.x,
-                         current_position.y) == LevelWall) {
+                         current_position.y) == LevelWall ||
+                level.at(current_position.x,
+                         current_position.y) == LevelDoor) {
                 if (current_position.x != x || current_position.y != y) {
                     return 0;
                 }
@@ -207,6 +295,35 @@ void PlayerController::hurt() {
 
 float PlayerController::blood_factor() const {
     return 1.0f - (float)_health / 10.0f;
+}
+
+float PlayerController::show_locked() const {
+    return _show_locked;
+}
+
+float PlayerController::show_move_instructions() const {
+    return _show_move_instructions;
+}
+
+float PlayerController::show_torch_instructions() const {
+    return _show_torch_instructions;
+}
+
+void PlayerController::add_torch() {
+    if (_torches == 0 && !_fade_out_torch_instructions) {
+        _show_torch_instructions = 1.0f;
+    }
+    _torches++;
+    _show_inventory = 4.0f;
+}
+
+void PlayerController::add_key() {
+    _keys++;
+    _show_inventory = 4.0f;
+}
+
+float PlayerController::show_inventory() const {
+    return minimum(_show_inventory, 1.0f);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

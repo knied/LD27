@@ -14,6 +14,7 @@
 
 #include <string>
 #include <iostream>
+#include "Types.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -26,6 +27,25 @@ struct Color {
           unsigned char b,
           unsigned char a = 255)
     : r(r), g(g), b(b), a(a) {}
+    
+    Color operator + (const Color& c) const {
+        return Color(minimum(r + c.r,255),
+                     minimum(g + c.g,255),
+                     minimum(b + c.b,255));
+    }
+    Color operator - (const Color& c) const {
+        return Color(r - c.r, g - c.g, b - c.b);
+    }
+    
+    Color operator * (unsigned char c) const {
+        return Color(r * c, g * c, b * c);
+    }
+    Color operator * (const Color& c) const {
+        unsigned int nr = minimum((float)(r * c.r) / 255.0f, 255.0f);
+        unsigned int ng = minimum((float)(g * c.g) / 255.0f, 255.0f);
+        unsigned int nb = minimum((float)(b * c.b) / 255.0f, 255.0f);
+        return Color(nr, ng, nb);
+    }
 };
 
 Color alpha_blend(const Color& dest, const Color& src);

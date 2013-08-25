@@ -47,7 +47,8 @@ void MonsterController::update(float dt, const Level& level, PlayerController& p
         bool visible = player.point_visible(_orientation->position.x, _orientation->position.y, level);
         bool in_sight = true;
         for (unsigned int i = 0; i < line_of_sight.size(); ++i) {
-            if (level.at(line_of_sight[i].x,line_of_sight[i].y) == LevelWall) {
+            if (level.at(line_of_sight[i].x,line_of_sight[i].y) == LevelWall
+                || level.at(line_of_sight[i].x,line_of_sight[i].y) == LevelDoor) {
                 in_sight = false;
                 break;
             }

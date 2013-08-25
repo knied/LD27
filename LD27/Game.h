@@ -47,9 +47,23 @@ private:
     EntityComponentHandle<Orientation> _camera_orientation;
     
     Level* _level;
-    unsigned char wall_symbol(int x, int y, bool& flip_x, bool& flip_y) const;
+    unsigned char symbol(int x, int y, bool& flip_x, bool& flip_y) const;
+    void colors(int x, int y, Color& symbol_color, Color& background_color) const;
+    
+    std::vector<Position> _keys;
+    std::vector<Position> _torches;
     
     bool _game_over;
+    
+    std::vector<std::string> _level_names;
+    unsigned int _current_level;
+    bool _game_finished;
+    float _game_finish_fade_out;
+    
+    void load_level(unsigned int level);
+    
+    float _level_fade_out;
+    bool _level_finished;
     
 public:
     Game();

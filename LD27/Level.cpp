@@ -31,6 +31,12 @@ Level::Level(const std::string& name) : _default_tile(LevelWall) {
             } else if (tile == LevelMonsterSpawn) {
                 _monster_spawns.push_back(Position(x,_height - y - 1));
                 _data[(_height - y - 1) * _width + x].tile = LevelFloor;
+            } else if (tile == LevelKey) {
+                _key_spawns.push_back(Position(x,_height - y - 1));
+                _data[(_height - y - 1) * _width + x].tile = LevelFloor;
+            } else if (tile == LevelTorch) {
+                _torch_spawns.push_back(Position(x,_height - y - 1));
+                _data[(_height - y - 1) * _width + x].tile = LevelFloor;
             } else {
                 _data[(_height - y - 1) * _width + x].tile = tile;
             }
@@ -65,6 +71,22 @@ LevelTile Level::tile_for_rgb(unsigned char r,
         return LevelMonsterSpawn;
     }
     
+    if (r == 0 && g == 0 && b == 255) {
+        return LevelDoor;
+    }
+    
+    if (r == 255 && g == 255 && b == 0) {
+        return LevelKey;
+    }
+    
+    if (r == 255 && g == 0 && b == 255) {
+        return LevelExit;
+    }
+    
+    if (r == 0 && g == 255 && b == 255) {
+        return LevelTorch;
+    }
+    
     return LevelWall;
 }
 
@@ -82,12 +104,27 @@ void Level::set_known(int x, int y) {
     _data[y * _width + x].known = true;
 }
 
+void Level::set_tile(int x, int y, const LevelTile& tile) {
+    if (x < 0 || x > _width || y < 0 || y > _height) {
+        return;
+    }
+    _data[y * _width + x].tile = tile;
+}
+
 const Position& Level::spawn() const {
     return _spawn;
 }
 
 const std::vector<Position>& Level::monster_spawns() const {
     return _monster_spawns;
+}
+
+const std::vector<Position>& Level::key_spawns() const {
+    return _key_spawns;
+}
+
+const std::vector<Position>& Level::torch_spawns() const {
+    return _torch_spawns;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
