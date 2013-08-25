@@ -18,6 +18,7 @@
 #include "Graphics.h"
 #include "Input.h"
 #include "Level.h"
+#include "Sound.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -31,6 +32,13 @@ class PlayerController {
     Control _west_control;
     
     Control _torch_control;
+    
+    Sound _step_sound;
+    Sound _torch_sound;
+    Sound _key_sound;
+    Sound _hit0_sound;
+    Sound _hit1_sound;
+    Sound _door_sound;
     
     float _fov;
     int _view;

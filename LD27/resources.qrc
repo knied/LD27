@@ -1,6 +1,15 @@
 <!DOCTYPE RCC><RCC version="1.0">
   <qresource>
     <file>8x8tiles.png</file>
-    <file>Level.png</file>
+    <file>Level0.png</file>
+    <file>Level1.png</file>
+    <file>Level2.png</file>
+    <file>step.wav</file>
+    <file>torch.wav</file>
+    <file>key.wav</file>
+    <file>hit0.wav</file>
+    <file>hit1.wav</file>
+    <file>door.wav</file>
+    <file>next_level.wav</file>
   </qresource>
 </RCC>

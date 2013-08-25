@@ -18,6 +18,8 @@ PlayerController::PlayerController(const EntityComponentHandle<Orientation>& ori
 _north_control(KEY_ARROW_UP), _south_control(KEY_ARROW_DOWN),
 _east_control(KEY_ARROW_RIGHT), _west_control(KEY_ARROW_LEFT),
 _torch_control(KEY_SPACE),
+_step_sound("step"), _torch_sound("torch"), _key_sound("key"),
+_hit0_sound("hit0"), _hit1_sound("hit1"), _door_sound("door"),
 _fov(PI*0.4),
 _view(3), _torch_timer(0.0f), _health_timer(0.0f),
 _health(10), _show_locked(0.0f),
@@ -71,24 +73,32 @@ void PlayerController::update(float dt, Level& level) {
         dest.y += 1;
         _orientation->direction = NORTH;
         _fade_out_move_instructions = true;
+        _step_sound.setGain((float)rand() / (float)RAND_MAX * 0.25f + 0.1f);
+        _step_sound.play(1);
     }
     if (_south_control.pressed()
         || _south_control.down()) {
         dest.y -= 1;
         _orientation->direction = SOUTH;
         _fade_out_move_instructions = true;
+        _step_sound.setGain((float)rand() / (float)RAND_MAX * 0.25f + 0.1f);
+        _step_sound.play(1);
     }
     if (_east_control.pressed()
         || _east_control.down()) {
         dest.x += 1;
         _orientation->direction = EAST;
         _fade_out_move_instructions = true;
+        _step_sound.setGain((float)rand() / (float)RAND_MAX * 0.25f + 0.1f);
+        _step_sound.play(1);
     }
     if (_west_control.pressed()
         || _west_control.down()) {
         dest.x -= 1;
         _orientation->direction = WEST;
         _fade_out_move_instructions = true;
+        _step_sound.setGain((float)rand() / (float)RAND_MAX * 0.25f + 0.1f);
+        _step_sound.play(1);
     }
     
     if (_torch_control.pressed()) {
@@ -139,6 +149,8 @@ void PlayerController::update(float dt, Level& level) {
         if (_keys > 0) {
             _keys--;
             level.set_tile(_orientation->position.x-1, _orientation->position.y, LevelFloor);
+            _door_sound.setGain(0.5f);
+            _door_sound.play(1);
             _show_inventory = 4.0f;
         } else {
             _show_locked = 1.0f;
@@ -149,6 +161,8 @@ void PlayerController::update(float dt, Level& level) {
         if (_keys > 0) {
             _keys--;
             level.set_tile(_orientation->position.x+1, _orientation->position.y, LevelFloor);
+            _door_sound.setGain(0.5f);
+            _door_sound.play(1);
             _show_inventory = 4.0f;
         } else {
             _show_locked = 1.0f;
@@ -159,6 +173,8 @@ void PlayerController::update(float dt, Level& level) {
         if (_keys > 0) {
             _keys--;
             level.set_tile(_orientation->position.x, _orientation->position.y-1, LevelFloor);
+            _door_sound.setGain(0.5f);
+            _door_sound.play(1);
             _show_inventory = 4.0f;
         } else {
             _show_locked = 1.0f;
@@ -169,6 +185,8 @@ void PlayerController::update(float dt, Level& level) {
         if (_keys > 0) {
             _keys--;
             level.set_tile(_orientation->position.x, _orientation->position.y+1, LevelFloor);
+            _door_sound.setGain(0.5f);
+            _door_sound.play(1);
             _show_inventory = 4.0f;
         } else {
             _show_locked = 1.0f;
@@ -290,6 +308,14 @@ const Position& PlayerController::position() const {
 void PlayerController::hurt() {
     if (_health > 0) {
         _health--;
+        
+        if (rand() % 2 == 0) {
+            _hit0_sound.setGain(0.5f);
+            _hit0_sound.play(1);
+        } else {
+            _hit1_sound.setGain(0.5f);
+            _hit1_sound.play(1);
+        }
     }
 }
 
@@ -315,9 +341,13 @@ void PlayerController::add_torch() {
     }
     _torches++;
     _show_inventory = 4.0f;
+    _torch_sound.setGain(0.5f);
+    _torch_sound.play(1);
 }
 
 void PlayerController::add_key() {
+    _key_sound.setGain(0.5f);
+    _key_sound.play(1);
     _keys++;
     _show_inventory = 4.0f;
 }

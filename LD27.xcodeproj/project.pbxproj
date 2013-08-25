@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D3CA9D517CA560F000933E7 /* door.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D3CA9CE17CA560F000933E7 /* door.wav */; };
+		6D3CA9D617CA560F000933E7 /* hit0.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D3CA9CF17CA560F000933E7 /* hit0.wav */; };
+		6D3CA9D717CA560F000933E7 /* hit1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D3CA9D017CA560F000933E7 /* hit1.wav */; };
+		6D3CA9D817CA560F000933E7 /* key.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D3CA9D117CA560F000933E7 /* key.wav */; };
+		6D3CA9D917CA560F000933E7 /* next_level.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D3CA9D217CA560F000933E7 /* next_level.wav */; };
+		6D3CA9DA17CA560F000933E7 /* step.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D3CA9D317CA560F000933E7 /* step.wav */; };
+		6D3CA9DB17CA560F000933E7 /* torch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D3CA9D417CA560F000933E7 /* torch.wav */; };
+		6D3CA9DF17CA96A8000933E7 /* Level0.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D3CA9DC17CA96A8000933E7 /* Level0.png */; };
+		6D3CA9E017CA96A8000933E7 /* Level1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D3CA9DD17CA96A8000933E7 /* Level1.png */; };
+		6D3CA9E117CA96A8000933E7 /* Level2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D3CA9DE17CA96A8000933E7 /* Level2.png */; };
 		6D5646EE17C2572600B70E81 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5646EC17C2572600B70E81 /* Sound.cpp */; };
 		6D616F4B17C75BDB00DB1B11 /* FallbackGameView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D616F4917C75BDB00DB1B11 /* FallbackGameView.cpp */; };
 		6D65A47317BEC210000ACEC9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D65A47217BEC210000ACEC9 /* Cocoa.framework */; };
@@ -25,7 +35,6 @@
 		6D7B4F2517C8ADE00070F143 /* PlayerController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D7B4F2317C8ADE00070F143 /* PlayerController.cpp */; };
 		6D7B4F2817C8AE280070F143 /* Types.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D7B4F2617C8AE280070F143 /* Types.cpp */; };
 		6D7B4F2B17C8EE8E0070F143 /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D7B4F2917C8EE8E0070F143 /* Level.cpp */; };
-		6D7B4F2D17C8F4AF0070F143 /* Level.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7B4F2C17C8F4AF0070F143 /* Level.png */; };
 		6D7B4F3017C9365D0070F143 /* MonsterController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D7B4F2E17C9365D0070F143 /* MonsterController.cpp */; };
 		6DE1686B17C0138B00263BAC /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DE1686917C0138B00263BAC /* Input.cpp */; };
 		6DE7EFC317C62C3900B2DA75 /* EntityComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DE7EFC117C62C3900B2DA75 /* EntityComponent.cpp */; };
@@ -34,6 +43,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6D3CA9CE17CA560F000933E7 /* door.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = door.wav; sourceTree = "<group>"; };
+		6D3CA9CF17CA560F000933E7 /* hit0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit0.wav; sourceTree = "<group>"; };
+		6D3CA9D017CA560F000933E7 /* hit1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit1.wav; sourceTree = "<group>"; };
+		6D3CA9D117CA560F000933E7 /* key.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = key.wav; sourceTree = "<group>"; };
+		6D3CA9D217CA560F000933E7 /* next_level.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = next_level.wav; sourceTree = "<group>"; };
+		6D3CA9D317CA560F000933E7 /* step.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = step.wav; sourceTree = "<group>"; };
+		6D3CA9D417CA560F000933E7 /* torch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = torch.wav; sourceTree = "<group>"; };
+		6D3CA9DC17CA96A8000933E7 /* Level0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level0.png; sourceTree = "<group>"; };
+		6D3CA9DD17CA96A8000933E7 /* Level1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level1.png; sourceTree = "<group>"; };
+		6D3CA9DE17CA96A8000933E7 /* Level2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level2.png; sourceTree = "<group>"; };
 		6D5646EC17C2572600B70E81 /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
 		6D5646ED17C2572600B70E81 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		6D616F4917C75BDB00DB1B11 /* FallbackGameView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FallbackGameView.cpp; sourceTree = "<group>"; };
@@ -64,7 +83,6 @@
 		6D7B4F2717C8AE280070F143 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
 		6D7B4F2917C8EE8E0070F143 /* Level.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Level.cpp; sourceTree = "<group>"; };
 		6D7B4F2A17C8EE8E0070F143 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
-		6D7B4F2C17C8F4AF0070F143 /* Level.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level.png; sourceTree = "<group>"; };
 		6D7B4F2E17C9365D0070F143 /* MonsterController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MonsterController.cpp; sourceTree = "<group>"; };
 		6D7B4F2F17C9365D0070F143 /* MonsterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterController.h; sourceTree = "<group>"; };
 		6DE1686917C0138B00263BAC /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
@@ -176,7 +194,16 @@
 		6D65A4A417BEC8C5000ACEC9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6D7B4F2C17C8F4AF0070F143 /* Level.png */,
+				6D3CA9DC17CA96A8000933E7 /* Level0.png */,
+				6D3CA9DD17CA96A8000933E7 /* Level1.png */,
+				6D3CA9DE17CA96A8000933E7 /* Level2.png */,
+				6D3CA9CE17CA560F000933E7 /* door.wav */,
+				6D3CA9CF17CA560F000933E7 /* hit0.wav */,
+				6D3CA9D017CA560F000933E7 /* hit1.wav */,
+				6D3CA9D117CA560F000933E7 /* key.wav */,
+				6D3CA9D217CA560F000933E7 /* next_level.wav */,
+				6D3CA9D317CA560F000933E7 /* step.wav */,
+				6D3CA9D417CA560F000933E7 /* torch.wav */,
 				6D65A4A517BEC925000ACEC9 /* resources.qrc */,
 				6D65A4A217BEC8C0000ACEC9 /* 8x8tiles.png */,
 			);
@@ -237,7 +264,16 @@
 			files = (
 				6D65A47D17BEC210000ACEC9 /* InfoPlist.strings in Resources */,
 				6D65A48317BEC210000ACEC9 /* Credits.rtf in Resources */,
-				6D7B4F2D17C8F4AF0070F143 /* Level.png in Resources */,
+				6D3CA9D517CA560F000933E7 /* door.wav in Resources */,
+				6D3CA9D617CA560F000933E7 /* hit0.wav in Resources */,
+				6D3CA9D717CA560F000933E7 /* hit1.wav in Resources */,
+				6D3CA9D817CA560F000933E7 /* key.wav in Resources */,
+				6D3CA9D917CA560F000933E7 /* next_level.wav in Resources */,
+				6D3CA9DA17CA560F000933E7 /* step.wav in Resources */,
+				6D3CA9DB17CA560F000933E7 /* torch.wav in Resources */,
+				6D3CA9DF17CA96A8000933E7 /* Level0.png in Resources */,
+				6D3CA9E017CA96A8000933E7 /* Level1.png in Resources */,
+				6D3CA9E117CA96A8000933E7 /* Level2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

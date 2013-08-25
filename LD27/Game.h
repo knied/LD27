@@ -34,6 +34,8 @@ public:
 private:
     GridView<GRID_WIDTH, GRID_HEIGHT> _grid_view;
     
+    Sound _next_level_sound;
+    
     EntityComponent<Orientation> _orientation_component;
     EntityComponent<Tile> _tile_component;
     

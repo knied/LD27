@@ -13,7 +13,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
-Game::Game() : _level(0), _game_over(false), _game_finished(false), _current_level(0), _level_fade_out(1.0f), _level_finished(false), _game_finish_fade_out(0.0f) {
+Game::Game() : _next_level_sound("next_level"), _level(0), _game_over(false), _game_finished(false), _current_level(0), _level_fade_out(1.0f), _level_finished(false), _game_finish_fade_out(0.0f) {
     // spawn player
     /*_entities.push_back(create_entity());
     _orientations.push_back(EntityComponentHandle<Orientation>(&_orientation_component, _entities.back()));
@@ -34,7 +34,9 @@ Game::Game() : _level(0), _game_over(false), _game_finished(false), _current_lev
     
     _keys = _level->key_spawns();
     _torches = _level->torch_spawns();*/
-    _level_names.push_back(":/Level.png");
+    _level_names.push_back(":/Level0.png");
+    _level_names.push_back(":/Level1.png");
+    _level_names.push_back(":/Level2.png");
     load_level(_current_level);
 }
 
@@ -169,6 +171,8 @@ void Game::update(float dt) {
             _level_fade_out += dt;
             if (_level_fade_out > 1.0f) {
                 _level_finished = false;
+                _next_level_sound.setGain(0.5f);
+                _next_level_sound.play(1);
                 load_level(++_current_level);
                 _level_fade_out = 1.0f;
             }
